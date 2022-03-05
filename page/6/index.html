@@ -152,155 +152,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-C语言总结/C 预处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C语言总结/C语言sizeof与strlen详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="C-预处理–菜鸟教程笔记"><a href="#C-预处理–菜鸟教程笔记" class="headerlink" title="C 预处理–菜鸟教程笔记"></a>C 预处理–菜鸟教程笔记</h1><blockquote>
-<p><strong>C 预处理器</strong>不是编译器的组成部分，但是它是编译过程中一个单独的步骤。简言之，C 预处理器只不过是一个文本替换工具而已，它们会指示编译器在实际编译之前完成所需的预处理。我们将把 C 预处理器（C Preprocessor）简写为 CPP。</p>
+        <blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/chuxinchangcun/article/details/120219122?spm=1001.2014.3001.5501">https://blog.csdn.net/chuxinchangcun/article/details/120219122?spm=1001.2014.3001.5501</a></p>
 </blockquote>
-<p>所有的预处理器命令都是以井号（#）开头。它必须是第一个非空字符，为了增强可读性，预处理器指令应从第一列开始。下面列出了所有重要的预处理器指令：</p>
-<table>
-<thead>
-<tr>
-<th align="left">指令</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">#define</td>
-<td align="left">定义宏</td>
-</tr>
-<tr>
-<td align="left">#include</td>
-<td align="left">包含一个源代码文件</td>
-</tr>
-<tr>
-<td align="left">#undef</td>
-<td align="left">取消已定义的宏</td>
-</tr>
-<tr>
-<td align="left">#ifdef</td>
-<td align="left">如果宏已经定义，则返回真</td>
-</tr>
-<tr>
-<td align="left">#ifndef</td>
-<td align="left">如果宏没有定义，则返回真</td>
-</tr>
-<tr>
-<td align="left">#if</td>
-<td align="left">如果给定条件为真，则编译下面代码</td>
-</tr>
-<tr>
-<td align="left">#else</td>
-<td align="left">#if 的替代方案</td>
-</tr>
-<tr>
-<td align="left">#elif</td>
-<td align="left">如果前面的 #if 给定条件不为真，当前条件为真，则编译下面代码</td>
-</tr>
-<tr>
-<td align="left">#endif</td>
-<td align="left">结束一个 #if……#else 条件编译块</td>
-</tr>
-<tr>
-<td align="left">#error</td>
-<td align="left">当遇到标准错误时，输出错误消息</td>
-</tr>
-<tr>
-<td align="left">#pragma</td>
-<td align="left">使用标准化方法，向编译器发布特殊的命令到编译器中</td>
-</tr>
-</tbody></table>
-<h2 id="预处理器实例"><a href="#预处理器实例" class="headerlink" title="预处理器实例"></a>预处理器实例</h2><p>分析下面的实例来理解不同的指令。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_ARRAY_LENGTH 20</span></span><br></pre></td></tr></table></figure>
+<p>注意<br><strong>strlen() 与 sizeof 的返回类型均为 size_t</strong></p>
+<p>sizeof()返回类型造成的坑</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i ;	<span class="comment">//全局变量未初始化系统默认为0</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    i--;	<span class="comment">//i变成-1</span></span><br><span class="line">    <span class="keyword">if</span>(i &gt; <span class="keyword">sizeof</span>(i))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;&gt;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;&lt;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打印结果: &gt;</p>
+<p>注意：sizeof(i)和i比较时，sizeof返回类型为size_t 而i的类型为int，最终是用size_t比较，对于-1的补码为：全1序列，如果看成是无符号数的话，对于的值比sizeof(i) &#x3D; 4大</p>
 
-<p>这个指令告诉 CPP 把所有的 MAX_ARRAY_LENGTH 替换为 20。使用 <em>#define</em> 定义常量来增强可读性。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;myheader.h&quot;</span></span></span><br></pre></td></tr></table></figure>
-
-<p>这些指令告诉 CPP 从<strong>系统库</strong>中获取 stdio.h，并添加文本到当前的源文件中。下一行告诉 CPP 从本地目录中获取 <strong>myheader.h</strong>，并添加内容到当前的源文件中。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">undef</span>  FILE_SIZE</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FILE_SIZE 42</span></span><br></pre></td></tr></table></figure>
-
-<p>这个指令告诉 CPP 取消已定义的 FILE_SIZE，并定义它为 42。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> MESSAGE</span></span><br><span class="line">   <span class="meta">#<span class="keyword">define</span> MESSAGE <span class="string">&quot;You wish!&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<p>这个指令告诉 CPP 只有当 MESSAGE 未定义时，才定义 MESSAGE。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> DEBUG</span></span><br><span class="line">   <span class="comment">/* Your debugging statements here */</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<p>这个指令告诉 CPP 如果定义了 DEBUG，则执行处理语句。在编译时，如果向 gcc 编译器传递了 <em>-DDEBUG</em> 开关量，这个指令就非常有用。它定义了 DEBUG，可以在编译期间随时开启或关闭调试。</p>
-<h2 id="预定义宏"><a href="#预定义宏" class="headerlink" title="预定义宏"></a>预定义宏</h2><p>ANSI C 定义了许多宏。在编程中可以使用这些宏，但是<strong>不能直接修改这些预定义的宏</strong>。</p>
-<table>
-<thead>
-<tr>
-<th align="left">宏</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">_<em>DATE</em>_</td>
-<td align="left">当前日期，一个以 “MMM DD YYYY” 格式表示的字符常量。</td>
-</tr>
-<tr>
-<td align="left">_<em>TIME</em>_</td>
-<td align="left">当前时间，一个以 “HH:MM:SS” 格式表示的字符常量。</td>
-</tr>
-<tr>
-<td align="left">_<em>FILE</em>_</td>
-<td align="left">这会包含当前文件名，一个字符串常量。</td>
-</tr>
-<tr>
-<td align="left">_<em>LINE</em>_</td>
-<td align="left">这会包含当前行号，一个十进制常量。</td>
-</tr>
-<tr>
-<td align="left">_<em>STDC</em>_</td>
-<td align="left">当编译器以 ANSI 标准编译时，则定义为 1。</td>
-</tr>
-</tbody></table>
-<p>让我们来尝试下面的实例：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;File :%s\n&quot;</span>, __FILE__ );</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;Date :%s\n&quot;</span>, __DATE__ );</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;Time :%s\n&quot;</span>, __TIME__ );</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;Line :%d\n&quot;</span>, __LINE__ );</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;ANSI :%d\n&quot;</span>, __STDC__ );</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当上面的代码（在文件 <strong>test.c</strong> 中）被编译和执行时，它会产生下列结果：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">File :test.c</span><br><span class="line">Date :Jun <span class="number">2</span> <span class="number">2012</span></span><br><span class="line">Time :<span class="number">03</span>:<span class="number">36</span>:<span class="number">24</span></span><br><span class="line">Line :<span class="number">8</span></span><br><span class="line">ANSI :<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="预处理器运算符"><a href="#预处理器运算符" class="headerlink" title="预处理器运算符"></a>预处理器运算符</h2><p>C 预处理器提供了下列的运算符来帮助创建宏：</p>
-<h5 id="宏延续运算符（-）"><a href="#宏延续运算符（-）" class="headerlink" title="宏延续运算符（\）"></a>宏延续运算符（\）</h5><p>一个宏通常写在一个单行上。但是如果宏太长，一个单行容纳不下，则使用宏延续运算符（\）。例如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span>  message_for(a, b)  \</span></span><br><span class="line"><span class="meta">    printf(#a <span class="string">&quot; and &quot;</span> #b <span class="string">&quot;: We love you!\n&quot;</span>)</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="字符串常量化运算符（-）"><a href="#字符串常量化运算符（-）" class="headerlink" title="字符串常量化运算符（#）"></a>字符串常量化运算符（#）</h5><p>在宏定义中，当需要把一个宏的参数转换为字符串常量时，则使用字符串常量化运算符（#）。在宏中使用的该运算符有一个特定的参数或参数列表。例如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  message_for(a, b)  \</span></span><br><span class="line"><span class="meta">    printf(#a <span class="string">&quot; and &quot;</span> #b <span class="string">&quot;: We love you!\n&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">   message_for(Carole, Debra);</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Carole and Debra: We love you!</span><br></pre></td></tr></table></figure>
-
-<h5 id="标记粘贴运算符（-）"><a href="#标记粘贴运算符（-）" class="headerlink" title="标记粘贴运算符（##）"></a>标记粘贴运算符（##）</h5><p>宏定义内的标记粘贴运算符（##）会合并两个参数。它允许在宏定义中两个独立的标记被合并为一个标记，<strong>其实是一个标识符</strong>。例如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> tokenpaster(n) printf (<span class="string">&quot;token&quot;</span> #n <span class="string">&quot; = %d&quot;</span>, token##n)</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="type">int</span> token34 = <span class="number">40</span>;</span><br><span class="line">   </span><br><span class="line">   tokenpaster(<span class="number">34</span>);</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">token34 = <span class="number">40</span></span><br></pre></td></tr></table></figure>
-
-<p>这是怎么发生的，因为这个实例会从编译器产生下列的实际输出：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span> (<span class="string">&quot;token34 = %d&quot;</span>, token34);</span><br></pre></td></tr></table></figure>
-
-<p>这个实例演示了 token##n 会连接到 token34 中，在这里，我们使用了<strong>字符串常量化运算符（#）</strong>和<strong>标记粘贴运算符（##）</strong>。</p>
-<h5 id="defined-运算符"><a href="#defined-运算符" class="headerlink" title="defined() 运算符"></a>defined() 运算符</h5><p>预处理器 <strong>defined</strong> 运算符是用在常量表达式中的，用来确定一个标识符是否已经使用 #define 定义过。如果指定的标识符已定义，则值为真（非零）。如果指定的标识符未定义，则值为假（零）。下面的实例演示了 defined() 运算符的用法：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> !defined (MESSAGE)</span></span><br><span class="line">   <span class="meta">#<span class="keyword">define</span> MESSAGE <span class="string">&quot;You wish!&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;Here is the message: %s\n&quot;</span>, MESSAGE);  </span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Here is the message: You wish!</span><br></pre></td></tr></table></figure>
-
-<h2 id="参数化的宏"><a href="#参数化的宏" class="headerlink" title="参数化的宏"></a>参数化的宏</h2><p>CPP 一个强大的功能是可以使用参数化的宏来模拟函数。例如，下面的代码是计算一个数的平方：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">square</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">   <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以使用宏重写上面的代码，如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> square(x) ((x) * (x))</span></span><br></pre></td></tr></table></figure>
-
-<p>在使用带有参数的宏之前，必须使用 <strong>#define</strong> 指令定义。参数列表是括在圆括号内，且必须紧跟在宏名称的后边。宏名称和左圆括号之间不允许有空格。例如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX(x,y) ((x) &gt; (y) ? (x) : (y))</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;Max between 20 and 10 is %d\n&quot;</span>, MAX(<span class="number">10</span>, <span class="number">20</span>));  </span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Max between <span class="number">20</span> and <span class="number">10</span> is <span class="number">20</span></span><br></pre></td></tr></table></figure>
       
 
       
@@ -312,7 +177,58 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%20%E9%A2%84%E5%A4%84%E7%90%86/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E8%AF%AD%E8%A8%80sizeof%E4%B8%8Estrlen%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-C语言总结/bug纠错--数组越界访问" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">3</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">for</span>(;i&lt;=<span class="number">3</span>;i++)&#123;</span><br><span class="line">		a[i]=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>错因</strong></p>
+<p>对 <strong>数组 a</strong> 进行了越界访问，而访问的地址正是 <strong>变量 i</strong> 在内存中的地址，在第四次循环时又将 <strong>变量i</strong> 的值置为 0 ,因此程序会陷入无限循环</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/bug%E7%BA%A0%E9%94%99--%E6%95%B0%E7%BB%84%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AE/">展开全文 >></a>
         </p>
       
 
@@ -380,57 +296,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/a%5B2%5D%E4%B8%8E2%5Ba%5D%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-C语言总结/bug纠错--数组越界访问" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">3</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">for</span>(;i&lt;=<span class="number">3</span>;i++)&#123;</span><br><span class="line">		a[i]=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>错因</strong></p>
-<p>对 <strong>数组 a</strong> 进行了越界访问，而访问的地址正是 <strong>变量 i</strong> 在内存中的地址，在第四次循环时又将 <strong>变量i</strong> 的值置为 0 ,因此程序会陷入无限循环</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/bug%E7%BA%A0%E9%94%99--%E6%95%B0%E7%BB%84%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AE/">展开全文 >></a>
         </p>
       
 

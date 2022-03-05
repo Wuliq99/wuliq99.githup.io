@@ -247,54 +247,6 @@
 
 
   
-    <article id="post-C语言总结/C程序/6174数学黑洞" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em><strong>6174数学黑洞<br>取任何一个4位数（4个数字均为同一个数字的例外），将组成该数的4个数字重新组合成可能的最大数和<br>可能的最小数，再将两者的差求出来；对此差值重复同样的过程（例如：开始时取数8028，最大的重新组<br>合数为8820，最小的为0288，二者的差8532。重复上述过程得出8532－2358&#x3D;6174），最后总是达到卡普<br>雷卡尔黑洞：6174。称之“黑洞”是指再继续运算，都重复这个数，“逃”不出去。把以上计算过程称<br>为卡普雷卡尔运算，这个现象称归敛，其结果6174称归敛结果。</strong></em></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sort_up</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> x;</span><br><span class="line">	<span class="type">int</span> temp;</span><br><span class="line">	<span class="type">int</span> flag=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;		<span class="comment">//升序排列 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>-i;j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])&#123;</span><br><span class="line">			temp=a[j];</span><br><span class="line">			a[j]=a[j+<span class="number">1</span>];</span><br><span class="line">			a[j+<span class="number">1</span>]=temp;</span><br><span class="line">		</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	x=a[<span class="number">0</span>]*<span class="number">1000</span>+a[<span class="number">1</span>]*<span class="number">100</span>+a[<span class="number">2</span>]*<span class="number">10</span>+a[<span class="number">3</span>];</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">split</span><span class="params">(<span class="type">int</span> s)</span>&#123;</span><br><span class="line">	a[<span class="number">0</span>] = s/<span class="number">1000</span>;  <span class="comment">//把这个数放入数组</span></span><br><span class="line">    a[<span class="number">1</span>] = s%<span class="number">1000</span>/<span class="number">100</span>;</span><br><span class="line">    a[<span class="number">2</span>] = s%<span class="number">100</span>/<span class="number">10</span>;</span><br><span class="line">    a[<span class="number">3</span>] = s%<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sort_down</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> x;</span><br><span class="line">	<span class="type">int</span> temp;</span><br><span class="line">	<span class="type">int</span> flag=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>-i;j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[j]&lt;a[j+<span class="number">1</span>])&#123;			<span class="comment">//降序排列 </span></span><br><span class="line">			temp=a[j];</span><br><span class="line">			a[j]=a[j+<span class="number">1</span>];</span><br><span class="line">			a[j+<span class="number">1</span>]=temp;</span><br><span class="line">		</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	x=a[<span class="number">0</span>]*<span class="number">1000</span>+a[<span class="number">1</span>]*<span class="number">100</span>+a[<span class="number">2</span>]*<span class="number">10</span>+a[<span class="number">3</span>];</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> temp,a1,a2,ans;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;请输入数字：&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;ans);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">	split(ans);</span><br><span class="line">	a2=sort_up();</span><br><span class="line">	a1=sort_down();</span><br><span class="line">	ans=a1-a2;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>,a1,a2);</span><br><span class="line">	<span class="keyword">if</span>(<span class="number">6174</span>==ans)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;don&#x27;t escape&quot;</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;escape successfully&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">6174数学黑洞 </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">取任何一个4位数（4个数字均为同一个数字的例外），将组成该数的4个数字重新组合成可能的最大数和</span></span><br><span class="line"><span class="comment">可能的最小数，再将两者的差求出来；对此差值重复同样的过程（例如：开始时取数8028，最大的重新组</span></span><br><span class="line"><span class="comment">合数为8820，最小的为0288，二者的差8532。重复上述过程得出8532－2358=6174），最后总是达到卡普</span></span><br><span class="line"><span class="comment">雷卡尔黑洞：6174。称之“黑洞”是指再继续运算，都重复这个数，“逃”不出去。把以上计算过程称</span></span><br><span class="line"><span class="comment">为卡普雷卡尔运算，这个现象称归敛，其结果6174称归敛结果。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/6174%E6%95%B0%E5%AD%A6%E9%BB%91%E6%B4%9E/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-C语言总结/C程序/单链表实现递增数列的判断" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -343,12 +295,13 @@
 
 
   
-    <article id="post-C语言总结/C程序/九九乘法表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C语言总结/C程序/6174数学黑洞" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">	srand(time(<span class="literal">NULL</span>));</span><br><span class="line">	</span><br><span class="line">	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),rand()%<span class="number">10</span>);<span class="comment">//设置文本颜色 </span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=i;j++)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d*%d=%-4d&quot;</span>,i,j,i*j);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">		&#125;	Sleep(<span class="number">1000</span>);</span><br><span class="line">		system(<span class="string">&quot;cls&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p><em><strong>6174数学黑洞<br>取任何一个4位数（4个数字均为同一个数字的例外），将组成该数的4个数字重新组合成可能的最大数和<br>可能的最小数，再将两者的差求出来；对此差值重复同样的过程（例如：开始时取数8028，最大的重新组<br>合数为8820，最小的为0288，二者的差8532。重复上述过程得出8532－2358&#x3D;6174），最后总是达到卡普<br>雷卡尔黑洞：6174。称之“黑洞”是指再继续运算，都重复这个数，“逃”不出去。把以上计算过程称<br>为卡普雷卡尔运算，这个现象称归敛，其结果6174称归敛结果。</strong></em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sort_up</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> x;</span><br><span class="line">	<span class="type">int</span> temp;</span><br><span class="line">	<span class="type">int</span> flag=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;		<span class="comment">//升序排列 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>-i;j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])&#123;</span><br><span class="line">			temp=a[j];</span><br><span class="line">			a[j]=a[j+<span class="number">1</span>];</span><br><span class="line">			a[j+<span class="number">1</span>]=temp;</span><br><span class="line">		</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	x=a[<span class="number">0</span>]*<span class="number">1000</span>+a[<span class="number">1</span>]*<span class="number">100</span>+a[<span class="number">2</span>]*<span class="number">10</span>+a[<span class="number">3</span>];</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">split</span><span class="params">(<span class="type">int</span> s)</span>&#123;</span><br><span class="line">	a[<span class="number">0</span>] = s/<span class="number">1000</span>;  <span class="comment">//把这个数放入数组</span></span><br><span class="line">    a[<span class="number">1</span>] = s%<span class="number">1000</span>/<span class="number">100</span>;</span><br><span class="line">    a[<span class="number">2</span>] = s%<span class="number">100</span>/<span class="number">10</span>;</span><br><span class="line">    a[<span class="number">3</span>] = s%<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sort_down</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> x;</span><br><span class="line">	<span class="type">int</span> temp;</span><br><span class="line">	<span class="type">int</span> flag=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>-i;j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[j]&lt;a[j+<span class="number">1</span>])&#123;			<span class="comment">//降序排列 </span></span><br><span class="line">			temp=a[j];</span><br><span class="line">			a[j]=a[j+<span class="number">1</span>];</span><br><span class="line">			a[j+<span class="number">1</span>]=temp;</span><br><span class="line">		</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	x=a[<span class="number">0</span>]*<span class="number">1000</span>+a[<span class="number">1</span>]*<span class="number">100</span>+a[<span class="number">2</span>]*<span class="number">10</span>+a[<span class="number">3</span>];</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> temp,a1,a2,ans;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;请输入数字：&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;ans);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">	split(ans);</span><br><span class="line">	a2=sort_up();</span><br><span class="line">	a1=sort_down();</span><br><span class="line">	ans=a1-a2;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>,a1,a2);</span><br><span class="line">	<span class="keyword">if</span>(<span class="number">6174</span>==ans)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;don&#x27;t escape&quot;</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;escape successfully&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">6174数学黑洞 </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">取任何一个4位数（4个数字均为同一个数字的例外），将组成该数的4个数字重新组合成可能的最大数和</span></span><br><span class="line"><span class="comment">可能的最小数，再将两者的差求出来；对此差值重复同样的过程（例如：开始时取数8028，最大的重新组</span></span><br><span class="line"><span class="comment">合数为8820，最小的为0288，二者的差8532。重复上述过程得出8532－2358=6174），最后总是达到卡普</span></span><br><span class="line"><span class="comment">雷卡尔黑洞：6174。称之“黑洞”是指再继续运算，都重复这个数，“逃”不出去。把以上计算过程称</span></span><br><span class="line"><span class="comment">为卡普雷卡尔运算，这个现象称归敛，其结果6174称归敛结果。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
       
 
       
@@ -360,7 +313,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/6174%E6%95%B0%E5%AD%A6%E9%BB%91%E6%B4%9E/">展开全文 >></a>
         </p>
       
 
@@ -390,55 +343,12 @@
 
 
   
-    <article id="post-C语言总结/注意" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C语言总结/C程序/九九乘法表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><p>移位符右边的数一定要是整数，下列例子会编译错误</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="number">1</span>&lt;&lt;<span class="number">1.6</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>C语言里函数的参数默认是从右往左处理的，输出时是从左往右。</p>
-<ul>
-<li><pre><code class="c">#include&lt;stdio.h&gt;
-int main(void)
-&#123;
-int a = 10, b = 20, c = 30;
- printf(&quot;\n %d..%d..%d \n&quot;, a+b+c, (b =b*2),(c = c*2));
- return 0;
- &#125;
-</code></pre>
-<blockquote>
-<p>结果：110..40..60</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>C语言中，非0为真，零为假</p>
-</li>
-<li><p>在Dev C++ 中，指针的大小都为 8 个字节</p>
-</li>
-<li><p>sizeof ()内部的表达式不参与真实运算！这点很重要！其运算值在编译时就计算好了</p>
-</li>
-<li><p>关于void*型指针：</p>
-<blockquote>
-<p> <strong>void*：无具体类型的指针  能够接收任意类型的地址<br> 缺点：不能进行运算。不能+-整数，不能解引用</strong></p>
-</blockquote>
-</li>
-<li><p>sizeof()与strlen()</p>
-</li>
-</ul>
-<blockquote>
-<p><strong>共同点：返回类型都是size_t</strong></p>
-<p><strong>不同点：sizeof()是操作符计算的是变量&#x2F;类型所占空间的大小，单位是字节，\0也算进空间</strong></p>
-<p>​       <strong>strlen()是库函数，计算的是字符串长度，不计算\0</strong></p>
-</blockquote>
-<ul>
-<li>在两种方法都正确时，下标绝不会比指针更有效率，但指针有时会比下标更有效率。前提是指针被正确使用</li>
-<li>下标引用的优先级高于间接访问</li>
-</ul>
-
+        <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">	srand(time(<span class="literal">NULL</span>));</span><br><span class="line">	</span><br><span class="line">	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),rand()%<span class="number">10</span>);<span class="comment">//设置文本颜色 </span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=i;j++)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d*%d=%-4d&quot;</span>,i,j,i*j);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">		&#125;	Sleep(<span class="number">1000</span>);</span><br><span class="line">		system(<span class="string">&quot;cls&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -450,7 +360,7 @@ int a = 10, b = 20, c = 30;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E6%B3%A8%E6%84%8F/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8/">展开全文 >></a>
         </p>
       
 
@@ -550,6 +460,96 @@ int a = 10, b = 20, c = 30;
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-C语言总结/注意" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>移位符右边的数一定要是整数，下列例子会编译错误</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="number">1</span>&lt;&lt;<span class="number">1.6</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>C语言里函数的参数默认是从右往左处理的，输出时是从左往右。</p>
+<ul>
+<li><pre><code class="c">#include&lt;stdio.h&gt;
+int main(void)
+&#123;
+int a = 10, b = 20, c = 30;
+ printf(&quot;\n %d..%d..%d \n&quot;, a+b+c, (b =b*2),(c = c*2));
+ return 0;
+ &#125;
+</code></pre>
+<blockquote>
+<p>结果：110..40..60</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>C语言中，非0为真，零为假</p>
+</li>
+<li><p>在Dev C++ 中，指针的大小都为 8 个字节</p>
+</li>
+<li><p>sizeof ()内部的表达式不参与真实运算！这点很重要！其运算值在编译时就计算好了</p>
+</li>
+<li><p>关于void*型指针：</p>
+<blockquote>
+<p> <strong>void*：无具体类型的指针  能够接收任意类型的地址<br> 缺点：不能进行运算。不能+-整数，不能解引用</strong></p>
+</blockquote>
+</li>
+<li><p>sizeof()与strlen()</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>共同点：返回类型都是size_t</strong></p>
+<p><strong>不同点：sizeof()是操作符计算的是变量&#x2F;类型所占空间的大小，单位是字节，\0也算进空间</strong></p>
+<p>​       <strong>strlen()是库函数，计算的是字符串长度，不计算\0</strong></p>
+</blockquote>
+<ul>
+<li>在两种方法都正确时，下标绝不会比指针更有效率，但指针有时会比下标更有效率。前提是指针被正确使用</li>
+<li>下标引用的优先级高于间接访问</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E6%B3%A8%E6%84%8F/">展开全文 >></a>
         </p>
       
 
@@ -865,44 +865,13 @@ int a = 10, b = 20, c = 30;
 
 
   
-    <article id="post-C语言总结/指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C语言总结/寻址公式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>对什么类型加一，相当于在此基础上加上一个整体</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">5</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">    <span class="type">int</span> *ptr = (<span class="type">int</span> *)(&amp;a + <span class="number">1</span>);	<span class="comment">//&amp;a：取出整个数组的地址，&amp;a+1：跳过一个数组</span></span><br><span class="line">    <span class="comment">//&amp;a的类型为：数组指针  int(*)[5] 			所以要强转</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//a为数组名，首元素地址，即为1的地址，+1，跳过一个元素，即为2的地址</span></span><br><span class="line">    <span class="built_in">printf</span>( <span class="string">&quot;%d,%d&quot;</span>, *(a + <span class="number">1</span>), *(ptr - <span class="number">1</span>));  <span class="comment">// 2  5</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>不同的对象加一，编译器会进行隐式的相加处理</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">//这里告知结构体的大小是20个字节</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> Num;</span><br><span class="line">    <span class="type">char</span> *pcName;</span><br><span class="line">    <span class="type">short</span> sDate;</span><br><span class="line">    <span class="type">char</span> cha[<span class="number">2</span>];</span><br><span class="line">    <span class="type">short</span> sBa[<span class="number">4</span>];</span><br><span class="line">&#125;*p;</span><br><span class="line"><span class="comment">//假设p 的值为0x100000。 如下表表达式的值分别为多少？</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    p = <span class="number">0x00100000</span>;</span><br><span class="line">    <span class="comment">//0x1--&gt;对应的值就是1  相当于0x00000001</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p\n&quot;</span>, p + <span class="number">0x1</span>);<span class="comment">//p为结构体指针，指向一个结构体，+1，跳过一个结构体，即跳过20个字节，</span></span><br><span class="line">    <span class="comment">//   0x00100000+20 -&gt; 0x00100020 错误，  要将20转化为16进制再加，或者将16进制0x00100000转化为10进制之后加上20，然后再转化为16进制</span></span><br><span class="line">    <span class="comment">// 20-&gt; 0X00000014</span></span><br><span class="line">    <span class="comment">//所以最终结果为：0x00100014</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p\n&quot;</span>, (<span class="type">unsigned</span> <span class="type">long</span>)p + <span class="number">0x1</span>);<span class="comment">//将p转化为长整形，+1，即为整形+1，  例如：500+1= 501，</span></span><br><span class="line">    <span class="comment">//所以结果为： 0x00100001</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p\n&quot;</span>, (<span class="type">unsigned</span> <span class="type">int</span>*)p + <span class="number">0x1</span>);</span><br><span class="line">    <span class="comment">//将p强转为无符号整形，+1跳过一个整形-&gt;跳过4个字节</span></span><br><span class="line">    <span class="comment">//所以结果为：0x00100004</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;v</span><br></pre></td></tr></table></figure>
-
-
-
-<p>逗号表达式，结果为表达式的最后一个值</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">3</span>][<span class="number">2</span>] = &#123; (<span class="number">0</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">3</span>), (<span class="number">4</span>, <span class="number">5</span>) &#125;;</span><br><span class="line">    <span class="type">int</span> *p;</span><br><span class="line">    p = a[<span class="number">0</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,p[<span class="number">0</span>]);	<span class="comment">//1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> aa[<span class="number">2</span>][<span class="number">5</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span> &#125;;</span><br><span class="line">    <span class="type">int</span> *ptr1 = (<span class="type">int</span> *)(&amp;aa + <span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> *ptr2 = (<span class="type">int</span> *)(*(aa + <span class="number">1</span>));</span><br><span class="line">    <span class="built_in">printf</span>( <span class="string">&quot;%d,%d&quot;</span>, *(ptr1 - <span class="number">1</span>), *(ptr2 - <span class="number">1</span>));    <span class="comment">// 10 5</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *a[] = &#123;<span class="string">&quot;work&quot;</span>,<span class="string">&quot;at&quot;</span>,<span class="string">&quot;alibaba&quot;</span>&#125;;</span><br><span class="line">    <span class="type">char</span>**pa = a;</span><br><span class="line">    pa++;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, *pa);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *c[] = &#123;<span class="string">&quot;ENTER&quot;</span>,<span class="string">&quot;NEW&quot;</span>,<span class="string">&quot;POINT&quot;</span>,<span class="string">&quot;FIRST&quot;</span>&#125;;</span><br><span class="line">    <span class="type">char</span>**cp[] = &#123;c+<span class="number">3</span>,c+<span class="number">2</span>,c+<span class="number">1</span>,c&#125;;</span><br><span class="line">    <span class="type">char</span>***cpp = cp;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, **++cpp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, *--*++cpp+<span class="number">3</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, *cpp[<span class="number">-2</span>]+<span class="number">3</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, cpp[<span class="number">-1</span>][<span class="number">-1</span>]+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>结果</p>
-<blockquote>
-<p>POINT<br>ER<br>ST<br>EW</p>
-</blockquote>
+        <p>寻址公式<br>$$<br>a[k]_address&#x3D;base_address+k*type_size<br>$$</p>
+<p>$$<br>a[k]_address&#x3D;base_address+(k-1)*type_size<br>$$</p>
 
       
 
@@ -915,7 +884,7 @@ int a = 10, b = 20, c = 30;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E6%8C%87%E9%92%88/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E5%AF%BB%E5%9D%80%E5%85%AC%E5%BC%8F/">展开全文 >></a>
         </p>
       
 
