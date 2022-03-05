@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-C语言总结/例题/结构体例题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E4%BE%8B%E9%A2%98/%E7%BB%93%E6%9E%84%E4%BD%93%E4%BE%8B%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.272Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>一. 真题介绍<br>        1.[2015-9 完美] 在IA32架构下，下面的union结构的sizeof大小为：_______</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">union PageLayout</span><br><span class="line">&#123;</span><br><span class="line">	struct</span><br><span class="line">	&#123;</span><br><span class="line">		int page_index;</span><br><span class="line">		char key[5];</span><br><span class="line">	&#125;;</span><br><span class="line">	char dummy[10];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>​        题解：<br>​        该题充分考察了结构struct和union联合的区别：<br>​        联合与结构的本质区别在于内存使用方式的不同。<br>​        结构中不同的成员使用不同的存储空间，一个结构所占的内存大小是结构中每个成员所占内存大小的总和，结构体中每个成员相互独立，是不能占用同一存储单元的。<br>​        联合大小取决于其中最大的数据类型内存分配大小，联合中内存是叠加存放的。<br>​        同一存储区域由不同类型的变量共享，这种数据类型就是联合(也称共同体)。<br>​        故：联合PageLayout中由struct和dummy[10]两部分组成，其中结构的大小为int型4字节+char8字节，因为它需要字节对齐为4的整数倍，结构12字节+dummy字符数组10字节。<br>​        答案：12</p>
+<p>​        </p>
+<pre><code>    2.[2013 完美世界] 求结构st的大小为_______.
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">struct st</span><br><span class="line">&#123;</span><br><span class="line">	char ch,*ptr;</span><br><span class="line">	union</span><br><span class="line">	&#123;</span><br><span class="line">		short a,b;</span><br><span class="line">		unsigned int c:2,d:1;</span><br><span class="line">	&#125;;</span><br><span class="line">	bool f;</span><br><span class="line">	struct st *next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>    题解：
+    该提醒主要考察结构体中嵌套联合的大小，原理同上。其中int型为4字节，short为2字节，指针相当于无符号的整形4字节，同时补齐则为实际大小。
+   char ch内存对齐后为4字节、char类型指针4字节、union为4字节（其中联合为最大数据类型的内存大小，short a 2字节、short b 2字节、无符号Int4字节，位域问题见下）、bool型补齐4字节、struct类型指针4字节，总共占：4+4+4+4+4=20字节。
+    答案：20
+    位域：把一个字节中的二进制位划分为几个不同的区域，并说明每个区域的位数。
+    格式：类型说明符 位域名：位域长度，例如 unsigned int c:2表示c在内存中占2位
+    通过如下程序输出结构中内存地址如下图所示：
+
+
+
+
+
+
+    3.[变形 完美] 求结构st的大小为_______.
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">struct st</span><br><span class="line">&#123;</span><br><span class="line">	char ch,*ptr;</span><br><span class="line">	union A</span><br><span class="line">	&#123;</span><br><span class="line">		short a,b;</span><br><span class="line">		unsigned int c:2,d:1;</span><br><span class="line">	&#125;;</span><br><span class="line">	bool f;</span><br><span class="line">	struct st *next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<p>​        题解：<br>​        它与上题的区别联合声明A，表示定义的一个类型不用占用内存；而如果没有声明A，则表示声明了结构体中的一个成员，需要占内存。<br>​        内存大小为ch补齐4字节、char指针4字节、联合不占内存0字节、bool型补齐4字节、结构指针4字节，输出16字节。注意：如果联合后面添加ui，如 “union A{….}ui;” 此时输出结果为20。<br>​        答案：16</p>
+<p>二. 其他题型<br>        代码分别如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct A</span><br><span class="line">&#123;</span><br><span class="line">	int page_index;</span><br><span class="line">	char key[5];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>​        输出：12<br>​        其中int4字节+char两个4字节补齐</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct B</span><br><span class="line">&#123;</span><br><span class="line">	char a;</span><br><span class="line">	int b;</span><br><span class="line">	double c;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>​        输出16<br>​        其中补齐4字节+int型4字节+double8字节，其中为什么补齐4而不是8呢？思考下~</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct C</span><br><span class="line">&#123;</span><br><span class="line">	char a;</span><br><span class="line">	double c;</span><br><span class="line">	char b;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>​        输出：24<br>​        输出补齐a8字节+double8字节+c补齐8字节</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">union </span><br><span class="line">&#123;</span><br><span class="line">	long i;</span><br><span class="line">	int k;</span><br><span class="line">	char c;</span><br><span class="line">	char s[4];</span><br><span class="line">&#125;D;</span><br></pre></td></tr></table></figure>
+
+<p>​        输出：4<br>​        联合4字节，其中由于联合各个成员使用共同的存储区域，当向其中一个成员赋值时，联合中的其他值也会发生变化。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E4%BE%8B%E9%A2%98/%E7%BB%93%E6%9E%84%E4%BD%93%E4%BE%8B%E9%A2%98/" data-id="cl0dbs9gc001hdgtq14843imi" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C语言总结/c语言常见错误/结构体变量的访问" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E7%BB%93%E6%9E%84%E4%BD%93%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BF%E9%97%AE/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.241Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>对于结构体指针而言</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(*结构体指针变量).成员名</span><br><span class="line">结构体指针变量-&gt;成员名</span><br></pre></td></tr></table></figure>
+
+<p>错误写法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">结构体指针变量.成员名</span><br></pre></td></tr></table></figure>
+
+<p>原因</p>
+<p>指针只是指代一段内存地址，并不代表真正的结构体变量</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E7%BB%93%E6%9E%84%E4%BD%93%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BF%E9%97%AE/" data-id="cl0dbs9gb001fdgtq5p770v8x" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C语言总结/c语言常见错误/函数指针和指针函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.210Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="指针函数"><a href="#指针函数" class="headerlink" title="指针函数"></a>指针函数</h3><blockquote>
+<p>一个返回类型是指针的<strong>函数</strong></p>
+</blockquote>
+<h3 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h3><blockquote>
+<p>指向函数的<strong>指针</strong></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">fu</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;DSfsdfsdf&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> (*p)()=fu;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,p);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0/" data-id="cl0dbs9ga001edgtq2f6g5spa" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C语言总结/c语言常见错误/变长数组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%8F%98%E9%95%BF%E6%95%B0%E7%BB%84/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.210Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>先看以下例子，编译器会报错</p>
+<blockquote>
+<p>[Error] array bound is not an integer constant before ‘]’ token</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> heigh=<span class="number">24</span>,wide=<span class="number">40</span>;</span><br><span class="line"><span class="type">int</span> <span class="built_in">map</span>[heigh][wide]=&#123;<span class="number">0</span>&#125;;		<span class="comment">//	数组为全局时 ， 不支持变长数组 ，  </span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;						<span class="comment">//	若要强行使用，需加 const 关键字使其常量化 </span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>解决方法</p>
+<p>使用 const 进行修饰</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> heigh=<span class="number">24</span>,wide=<span class="number">40</span>;</span><br><span class="line"><span class="type">int</span> <span class="built_in">map</span>[heigh][wide]=&#123;<span class="number">0</span>&#125;;		 </span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;						</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>但在单个代码块内支持变长数组</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line">		</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;						</span><br><span class="line">	<span class="type">int</span> heigh=<span class="number">24</span>,wide=<span class="number">40</span>;</span><br><span class="line">	<span class="type">int</span> <span class="built_in">map</span>[heigh][wide]=&#123;<span class="number">0</span>&#125;;		<span class="comment">//	单个代码块内</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>总结</p>
+<p>​        虽然在 C 语言中可以使用变长数组，但其实是编译器帮我们进行了处理，并且目前只有 C99 标准才支持，一般情况下不要使用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%8F%98%E9%95%BF%E6%95%B0%E7%BB%84/" data-id="cl0dbs9gb001gdgtq70y34cwo" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C语言总结/c语言常见错误/typedef与define" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/typedef%E4%B8%8Edefine/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.194Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>对于 #define</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只会进行简单替换</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> b int *</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> a=<span class="number">3</span>;</span><br><span class="line">	b p,q;</span><br><span class="line">	p=&amp;a;	<span class="comment">// p 为 int* 型</span></span><br><span class="line">	q=a;	<span class="comment">// q 为 int 型</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,*p,q);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">结果：3 3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>对于typedef</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不是简单的替换</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span>* b;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> a=<span class="number">3</span>;</span><br><span class="line">	b p,q;		<span class="comment">// p、q 都为指针</span></span><br><span class="line">	p=&amp;a;</span><br><span class="line">	q=&amp;a;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,*p,*q);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">结果：3 3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>总结</p>
+<p>define只是简单的替换，而typedef不是这样。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/typedef%E4%B8%8Edefine/" data-id="cl0dbs9ga001cdgtqbqg4800l" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C语言总结/c语言常见错误/c语言困惑" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/c%E8%AF%AD%E8%A8%80%E5%9B%B0%E6%83%91/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.178Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">3</span>][<span class="number">4</span>]=&#123;&#123;<span class="number">1</span>&#125;,&#123;<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;,&#123;<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;&#125;;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,*(a+<span class="number">1</span>)[<span class="number">1</span>]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,(*(a+<span class="number">1</span>))[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*结果：</span></span><br><span class="line"><span class="comment">6</span></span><br><span class="line"><span class="comment">4</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">		[ ]的优先级高于*，和()的优先级同级。</span></span><br><span class="line"><span class="comment">		对不加括号的*(a+1)[1]，要先作[1]后求*。a的类型是int (*)[4]，a+1 就是 a[1]行，再作(a+1)[1]，</span></span><br><span class="line"><span class="comment">		即这行的下一行，相当于原数组的a[2](但不是(a+1)+1)。这时再求 * ，即求*(a[2]+0) 或 **(a+2)得6。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span> </span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/c%E8%AF%AD%E8%A8%80%E5%9B%B0%E6%83%91/" data-id="cl0dbs9g9001adgtq9sya67h1" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C语言总结/c语言常见错误/strdup" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/strdup/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.178Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="函数简介"><a href="#函数简介" class="headerlink" title="函数简介"></a>函数简介</h2><h3 id="函数原型"><a href="#函数原型" class="headerlink" title="函数原型"></a>函数原型</h3><blockquote>
+<p>char *strdup(char const *string)</p>
+</blockquote>
+<h3 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h3><blockquote>
+<p>string.h</p>
+</blockquote>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><blockquote>
+<p>对输入的字符串进行拷贝</p>
+</blockquote>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><blockquote>
+<p>返回一个指针,指向为复制字符串分配的空间;如果分配空间失败,则返回NULL值</p>
+</blockquote>
+<h3 id="使用注意"><a href="#使用注意" class="headerlink" title="使用注意"></a>使用注意</h3><blockquote>
+<p>strdup()在内部调用了malloc()为变量分配内存，不需要使用返回的字符串时，需要用free()释放相应的内存空间，否则会造成<strong>内存泄漏</strong></p>
+</blockquote>
+<h2 id="函数详情"><a href="#函数详情" class="headerlink" title="函数详情"></a>函数详情</h2><h3 id="函数分析"><a href="#函数分析" class="headerlink" title="函数分析"></a>函数分析</h3><blockquote>
+<p>该函数返回一个输入字符串的拷贝，该拷贝存储于一块动态分配的内存中。函数首先试图获取足够的内存来存储这份拷贝。内存的容量应该比字符串的长度多一个字节，以便存储字符串结尾的 NULL 。如果内存分配成功，字符串就会被复制到这块新内存。最后，函数会返回一个指向这块内存的指针。即使由于某些原因导致内存分配失败，函数也会返回一个 NULL 指针</p>
+</blockquote>
+<h3 id="模拟实现"><a href="#模拟实现" class="headerlink" title="模拟实现"></a>模拟实现</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strdup</span><span class="params">(<span class="type">char</span> <span class="type">const</span> *<span class="built_in">string</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> *new_string;</span><br><span class="line">	</span><br><span class="line">	new_string=<span class="built_in">malloc</span>(<span class="built_in">strlen</span>(<span class="built_in">string</span>)+<span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//如果得到内存，就复制字符串 </span></span><br><span class="line">	<span class="keyword">if</span>(new_string!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">		<span class="built_in">strcpy</span>(new_string,<span class="built_in">string</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> new_string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/strdup/" data-id="cl0dbs9ga001ddgtqdbs3f6yu" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C语言总结/C程序/进制转换" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.163Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>1.链表头插法逆序存储<br>2.打印结束条件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> data;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">transform</span><span class="params">(<span class="keyword">struct</span> node *first)</span>&#123;</span><br><span class="line">	first=first-&gt;next;</span><br><span class="line">	<span class="keyword">while</span>(first!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,first-&gt;data);	<span class="comment">//打印转换后的数 </span></span><br><span class="line">		first=first-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> n,k;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;请输入被转换数：&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;请输入基数：&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;k);</span><br><span class="line">	<span class="keyword">if</span>(n==<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;转换后的数：%d&quot;</span>,n);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">p</span>=</span>(<span class="keyword">struct</span> node *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> node));</span><br><span class="line">	p-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">while</span>(n)&#123;</span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">s</span>=</span>(<span class="keyword">struct</span> node *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> node));</span><br><span class="line">		s-&gt;data=n%k;</span><br><span class="line">		s-&gt;next=p-&gt;next;</span><br><span class="line">		p-&gt;next=s;</span><br><span class="line">		n/=k;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;转换后的数：&quot;</span>);</span><br><span class="line">	transform(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" data-id="cl0dbs9g70017dgtqcsmlfnak" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C语言总结/C程序/英文句子逆序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/%E8%8B%B1%E6%96%87%E5%8F%A5%E5%AD%90%E9%80%86%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.163Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="英文句子逆序"><a href="#英文句子逆序" class="headerlink" title="英文句子逆序"></a>英文句子逆序</h2><p><em>题目：<br>将一个英文语句以单词为单位逆序排放。例如“I am a boy”，逆序排放后为“boy a am I”<br>所有单词之间用一个空格隔开，语句中除了英文字母外，不再包含其他字符</em>。</p>
+<p>思路：找到空格，设置断点，循环。</p>
+<p>方法 1 ：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">char</span> a[<span class="number">10000</span>];</span><br><span class="line">    <span class="type">int</span> i,len,t;</span><br><span class="line">    gets(a);</span><br><span class="line">    len=<span class="built_in">strlen</span>(a);</span><br><span class="line">    <span class="keyword">for</span>(i=len<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i]==<span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">            t=i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(;t&lt;len;t++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(a[t]==<span class="string">&#x27; &#x27;</span>) <span class="keyword">break</span>;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,a[t]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(a[i]!=<span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,a[i]);</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法 2 ：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">char</span> a[<span class="number">1000</span>];</span><br><span class="line">	<span class="type">int</span> i,k=<span class="number">0</span>,t;</span><br><span class="line">	gets(a);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="built_in">strlen</span>(a)<span class="number">-1</span>;i&gt;=<span class="number">0</span>;)&#123;</span><br><span class="line">	<span class="keyword">while</span>(a[i]!=<span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">		i--;</span><br><span class="line">		k++;</span><br><span class="line">		</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">if</span>(i&lt;<span class="number">0</span>)	<span class="keyword">break</span>;</span><br><span class="line">	t=i+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(a[i]==<span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">		i--;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(k!=<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,a[t]);</span><br><span class="line">		t++;</span><br><span class="line">		k--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	i=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(a[i]!=<span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,a[i]);</span><br><span class="line">		i++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/%E8%8B%B1%E6%96%87%E5%8F%A5%E5%AD%90%E9%80%86%E5%BA%8F/" data-id="cl0dbs9g80018dgtq8i4d246m" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C语言总结/C程序/贪吃蛇" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/%E8%B4%AA%E5%90%83%E8%9B%87/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.163Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="C语言实现贪吃蛇–1-1-1"><a href="#C语言实现贪吃蛇–1-1-1" class="headerlink" title="C语言实现贪吃蛇–1.1.1"></a>C语言实现贪吃蛇–1.1.1</h1><h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><ol>
+<li>设置一个循环</li>
+<li>在循环中进行游戏事件的判断和响应</li>
+</ol>
+<h2 id="难点解决（以本程序为例）"><a href="#难点解决（以本程序为例）" class="headerlink" title="难点解决（以本程序为例）"></a>难点解决（以本程序为例）</h2><p>问：如何实现绘制游戏界面？</p>
+<p>答：在Windows下进行贪吃蛇的编写，可以调用Windows提供的一些API和结构</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**********获取句柄**********/</span></span><br><span class="line">HANDLE Output = GetStdHandle(STD_OUTPUT_HANDLE);</span><br><span class="line"><span class="comment">/*将光标移动到指定位置*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">getPosition</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123;</span><br><span class="line">    COORD coord;</span><br><span class="line">    coord.X = x;</span><br><span class="line">    coord.Y = y;</span><br><span class="line">    SetConsoleCursorPosition(Output, coord);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>问：如何存储蛇的信息？</p>
+<p>答：自定义一个结构体数组</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*定义一个蛇类型*/</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">sn</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> length;</span><br><span class="line">    point position[N];</span><br><span class="line">&#125; sn;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>问：如何实现蛇的移动？</p>
+<p>答：要实现蛇的移动，可以向蛇的移动方向绘制一个新的蛇头。然后在蛇尾打印空格（如果没有这一步，蛇身会不断变长）</p>
+<p>问：如何生成随机食物？</p>
+<p>答：可以使用C提供的随机数生成，随机生成食物的坐标，然后打印食物</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*产生食物，食物必须满足特定条件，即不能在蛇身上，也不能在墙壁上*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">creatFood</span><span class="params">()</span>&#123;</span><br><span class="line">	srand(time(<span class="literal">NULL</span>));</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="type">int</span> flag=<span class="number">1</span>;</span><br><span class="line">		food.x=rand()%width;</span><br><span class="line">	food.y=rand()%height;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;snake.length;i++)</span><br><span class="line">		<span class="keyword">if</span>(food.x==snake.position[i].x&amp;&amp;snake.position[i].y==food.y)&#123;</span><br><span class="line">			flag=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">if</span>(food.x%<span class="number">2</span>!=<span class="number">0</span>||food.y==<span class="number">0</span>||food.x==<span class="number">0</span>)</span><br><span class="line">		flag=<span class="number">0</span>;	</span><br><span class="line">		<span class="keyword">if</span>(flag)</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">	getPosition(food.x,food.y);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line">&#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>问：如何实现蛇吃到食物后身体增长的效果？</p>
+<p>答：当蛇吃到食物，不清除蛇尾，可以达到蛇身增长的效果</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>注意：</p>
+<p>以下两种方法只是判定食物被吃后，蛇身如何变化的实现不同</p>
+<p>实现方法一（设置 last 保存蛇尾信息）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Windows.h&gt;</span><span class="comment">//windows编程头文件</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;conio.h&gt;</span><span class="comment">//控制台输入输出头文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*定义蛇的最大长度*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 20</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**********获取句柄**********/</span></span><br><span class="line">HANDLE Output = GetStdHandle(STD_OUTPUT_HANDLE);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*设置蛇运动范围的宽、高*/</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> width = <span class="number">40</span>, height = <span class="number">24</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*设置蛇初始运动方向*/</span></span><br><span class="line"><span class="type">char</span> key = <span class="string">&#x27;w&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*定义一个点类型，x、y表示坐标*/</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">point</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line">    <span class="type">int</span> y;</span><br><span class="line">&#125; point;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*定义一个蛇类型*/</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">sn</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> length;</span><br><span class="line">    point position[N];</span><br><span class="line">&#125; sn;</span><br><span class="line"></span><br><span class="line">sn snake;</span><br><span class="line"></span><br><span class="line">point food;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*last保存蛇的最后一节身体信息*/</span></span><br><span class="line">point last;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*将光标移动到指定位置*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">getPosition</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123;</span><br><span class="line">    COORD coord;</span><br><span class="line">    coord.X = x;</span><br><span class="line">    coord.Y = y;</span><br><span class="line">    SetConsoleCursorPosition(Output, coord);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*隐藏光标*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">hideHandle</span><span class="params">()</span> &#123;</span><br><span class="line">    CONSOLE_CURSOR_INFO cci;</span><br><span class="line">    cci.dwSize = <span class="number">1</span>; <span class="comment">/*设置光标大小*/</span></span><br><span class="line">    cci.bVisible = <span class="number">0</span>;<span class="comment">/*置光标不可见*/</span></span><br><span class="line">    SetConsoleCursorInfo(Output, &amp;cci); <span class="comment">/*设置(应用)光标信息*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*打印地图*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">printMap</span><span class="params">()</span> &#123;</span><br><span class="line">    getPosition(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= width; i += <span class="number">2</span>)<span class="comment">/*上*/</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line"></span><br><span class="line">    getPosition(<span class="number">0</span>, height);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= width; i += <span class="number">2</span>)<span class="comment">/*下*/</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; height; i++) &#123;</span><br><span class="line">        getPosition(<span class="number">0</span>, i);<span class="comment">/*左*/</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; height; i++) &#123;</span><br><span class="line">        getPosition(width, i);<span class="comment">/*右*/</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*判断蛇是否吃了食物，如果吃了，返回 1 */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">eatFood</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;snake.length;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>((snake.position[i].x)==food.x&amp;&amp;(snake.position[i].y==food.y))</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*产生食物，食物必须满足特定条件，即不能在蛇身上，也不能在墙壁上*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">creatFood</span><span class="params">()</span>&#123;</span><br><span class="line">	</span><br><span class="line">	srand(time(<span class="literal">NULL</span>));</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="type">int</span> flag=<span class="number">1</span>;</span><br><span class="line">		food.x=rand()%width;</span><br><span class="line">	food.y=rand()%height;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;snake.length;i++)</span><br><span class="line">		<span class="keyword">if</span>(food.x==snake.position[i].x&amp;&amp;snake.position[i].y==food.y)&#123;</span><br><span class="line">			flag=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">if</span>(food.x%<span class="number">2</span>!=<span class="number">0</span>||food.y==<span class="number">0</span>||food.x==<span class="number">0</span>)</span><br><span class="line">		flag=<span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(flag)</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	</span><br><span class="line">	getPosition(food.x,food.y);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">/*初始化蛇身*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">initSnake</span><span class="params">()</span> &#123;</span><br><span class="line">    snake.length = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; snake.length; i++) &#123;</span><br><span class="line">        snake.position[i].x = <span class="number">12</span> + <span class="number">2</span> * i;</span><br><span class="line">        snake.position[i].y = <span class="number">12</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; snake.length; i++) &#123;</span><br><span class="line">        getPosition(snake.position[i].x, snake.position[i].y);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*响应键盘事件*/</span> </span><br><span class="line"><span class="type">void</span> <span class="title function_">keyDown</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> pre_key = key;<span class="comment">/*pre_key记录原来的运动方向*/</span></span><br><span class="line"><span class="type">int</span> x=eatFood();</span><br><span class="line"><span class="comment">/*当键盘按下时执行该语句块*/</span></span><br><span class="line">    <span class="keyword">if</span> (kbhit()) &#123;</span><br><span class="line">        key = getch();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*该语句块判断蛇是否吃了食物，如果吃了，蛇尾不必消失*/</span></span><br><span class="line">    <span class="keyword">if</span> (!x) &#123;</span><br><span class="line">        getPosition(snake.position[snake.length - <span class="number">1</span>].x, snake.position[snake.length - <span class="number">1</span>].y);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;  &quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">    	snake.length+=<span class="number">1</span>;</span><br><span class="line">    	snake.position[snake.length<span class="number">-1</span>].x=last.x;</span><br><span class="line">    	snake.position[snake.length<span class="number">-1</span>].y=last.y;</span><br><span class="line">    	getPosition(last.x,last.y);</span><br><span class="line">    	<span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line">    	creatFood();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*该语句块保留除蛇头、蛇尾之外的信息*/</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = snake.length - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        snake.position[i].x = snake.position[i - <span class="number">1</span>].x;</span><br><span class="line">        snake.position[i].y = snake.position[i - <span class="number">1</span>].y;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*根据按键进行对应的操作*/</span></span><br><span class="line">    <span class="keyword">switch</span> (key) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;w&#x27;</span> :</span><br><span class="line">            <span class="keyword">if</span> (pre_key != <span class="string">&#x27;s&#x27;</span>)	<span class="comment">/*向下走时，不能向上走*/</span></span><br><span class="line">                snake.position[<span class="number">0</span>].y -= <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                snake.position[<span class="number">0</span>].y += <span class="number">1</span>;</span><br><span class="line">                key = <span class="string">&#x27;s&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;a&#x27;</span> :</span><br><span class="line">            <span class="keyword">if</span> (pre_key != <span class="string">&#x27;d&#x27;</span>)<span class="comment">/*向右走时，不能向左走*/</span></span><br><span class="line">                snake.position[<span class="number">0</span>].x -= <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                snake.position[<span class="number">0</span>].x += <span class="number">2</span>;</span><br><span class="line">                key = <span class="string">&#x27;d&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;s&#x27;</span> :</span><br><span class="line">            <span class="keyword">if</span> (pre_key != <span class="string">&#x27;w&#x27;</span>)<span class="comment">/*向上走时，不能向下走*/</span></span><br><span class="line">                snake.position[<span class="number">0</span>].y += <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                snake.position[<span class="number">0</span>].y -= <span class="number">1</span>;</span><br><span class="line">                key = <span class="string">&#x27;w&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;d&#x27;</span> :</span><br><span class="line">            <span class="keyword">if</span> (pre_key != <span class="string">&#x27;a&#x27;</span>)<span class="comment">/*向左走时，不能向右走*/</span></span><br><span class="line">                snake.position[<span class="number">0</span>].x += <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                snake.position[<span class="number">0</span>].x -= <span class="number">2</span>;</span><br><span class="line">                key = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">default</span>:<span class="comment">/*当输入错误的按键时，进行容错处理，即不影响程序的正常运行*/</span></span><br><span class="line">            <span class="keyword">switch</span> (pre_key) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;w&#x27;</span> :</span><br><span class="line">                    snake.position[<span class="number">0</span>].y -= <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;a&#x27;</span> :</span><br><span class="line">                    snake.position[<span class="number">0</span>].x -= <span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;s&#x27;</span> :</span><br><span class="line">                    snake.position[<span class="number">0</span>].y += <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;d&#x27;</span> :</span><br><span class="line">                    snake.position[<span class="number">0</span>].x += <span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            key = pre_key;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    getPosition(snake.position[<span class="number">0</span>].x, snake.position[<span class="number">0</span>].y);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line">	last.x=snake.position[snake.length<span class="number">-1</span>].x;</span><br><span class="line">	last.y=snake.position[snake.length<span class="number">-1</span>].y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*判断是否撞墙和吃自己，如果是，返回 1 */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">collision</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;snake.length;i++)</span><br><span class="line">		<span class="keyword">if</span>(snake.position[<span class="number">0</span>].x==snake.position[i].x&amp;&amp;snake.position[<span class="number">0</span>].y==snake.position[i].y)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			</span><br><span class="line">	<span class="keyword">if</span>(snake.position[<span class="number">0</span>].x==<span class="number">0</span>||snake.position[<span class="number">0</span>].x==width||snake.position[<span class="number">0</span>].y==<span class="number">0</span>||snake.position[<span class="number">0</span>].y==height)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    printMap();</span><br><span class="line">    hideHandle();</span><br><span class="line">    initSnake();</span><br><span class="line">    creatFood();</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    	<span class="keyword">if</span>(collision())&#123;</span><br><span class="line">    		getPosition(<span class="number">45</span>,<span class="number">12</span>);</span><br><span class="line">    		<span class="built_in">printf</span>(<span class="string">&quot;游戏结束,&quot;</span>);</span><br><span class="line">    		system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    		<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">    		</span><br><span class="line">    		keyDown();</span><br><span class="line">      	</span><br><span class="line">    	Sleep(<span class="number">500</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现方法二（延迟响应）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Windows.h&gt;</span><span class="comment">//windows编程头文件</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;conio.h&gt;</span><span class="comment">//控制台输入输出头文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 20</span></span><br><span class="line"><span class="comment">/**********获取句柄**********/</span></span><br><span class="line">HANDLE Output = GetStdHandle(STD_OUTPUT_HANDLE);</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> width = <span class="number">40</span>, height = <span class="number">24</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> key = <span class="string">&#x27;w&#x27;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">point</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line">    <span class="type">int</span> y;</span><br><span class="line">&#125; point;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">sn</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> length;</span><br><span class="line">    point position[N];</span><br><span class="line">&#125; sn;</span><br><span class="line"></span><br><span class="line">sn snake;</span><br><span class="line">point food;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*将光标移动到指定位置*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">getPosition</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123;</span><br><span class="line">    COORD coord;</span><br><span class="line">    coord.X = x;</span><br><span class="line">    coord.Y = y;</span><br><span class="line">    SetConsoleCursorPosition(Output, coord);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*隐藏光标*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">hideHandle</span><span class="params">()</span> &#123;</span><br><span class="line">    CONSOLE_CURSOR_INFO cci;</span><br><span class="line">    cci.dwSize = <span class="number">1</span>; <span class="comment">/*设置光标大小*/</span></span><br><span class="line">    cci.bVisible = <span class="number">0</span>;<span class="comment">/*置光标不可见*/</span></span><br><span class="line">    SetConsoleCursorInfo(Output, &amp;cci); <span class="comment">/*设置(应用)光标信息*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">printMap</span><span class="params">()</span> &#123;</span><br><span class="line">    getPosition(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= width; i += <span class="number">2</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line"></span><br><span class="line">    getPosition(<span class="number">0</span>, height);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= width; i += <span class="number">2</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; height; i++) &#123;</span><br><span class="line">        getPosition(<span class="number">0</span>, i);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; height; i++) &#123;</span><br><span class="line">        getPosition(width, i);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*判断蛇是否吃了食物，如果吃了，返回 1 */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">eatFood</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>((snake.position[<span class="number">0</span>].x)==food.x&amp;&amp;(snake.position[<span class="number">0</span>].y==food.y))</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">creatFood</span><span class="params">()</span>&#123;</span><br><span class="line">	</span><br><span class="line">	srand(time(<span class="literal">NULL</span>));</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="type">int</span> flag=<span class="number">1</span>;</span><br><span class="line">		food.x=rand()%width;</span><br><span class="line">	food.y=rand()%height;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;snake.length;i++)</span><br><span class="line">		<span class="keyword">if</span>(food.x==snake.position[i].x&amp;&amp;snake.position[i].y==food.y)&#123;</span><br><span class="line">			flag=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">if</span>(food.x%<span class="number">2</span>!=<span class="number">0</span>||food.y==<span class="number">0</span>||food.x==<span class="number">0</span>)</span><br><span class="line">		flag=<span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(flag)</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	</span><br><span class="line">	getPosition(food.x,food.y);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">/*初始化蛇身*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">initSnake</span><span class="params">()</span> &#123;</span><br><span class="line">    snake.length = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; snake.length; i++) &#123;</span><br><span class="line">        snake.position[i].x = <span class="number">12</span> + <span class="number">2</span> * i;</span><br><span class="line">        snake.position[i].y = <span class="number">12</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; snake.length; i++) &#123;</span><br><span class="line">        getPosition(snake.position[i].x, snake.position[i].y);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*响应键盘事件*/</span> </span><br><span class="line"><span class="type">void</span> <span class="title function_">keyDown</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> pre_key = key;<span class="comment">/*pre_key记录原来的运动方向*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*当键盘按下时执行该语句块*/</span></span><br><span class="line">    <span class="keyword">if</span> (kbhit()) &#123;</span><br><span class="line">        key = getch();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*该语句块判断蛇是否吃了食物，如果吃了，蛇尾不必消失*/</span></span><br><span class="line">    <span class="keyword">if</span>(!eatFood()) &#123;</span><br><span class="line">        getPosition(snake.position[snake.length - <span class="number">1</span>].x, snake.position[snake.length - <span class="number">1</span>].y);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;  &quot;</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">	</span><br><span class="line"></span><br><span class="line"><span class="comment">/*该语句块保留除蛇头、蛇尾之外的信息*/</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = snake.length - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        snake.position[i].x = snake.position[i - <span class="number">1</span>].x;</span><br><span class="line">        snake.position[i].y = snake.position[i - <span class="number">1</span>].y;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*根据按键进行对应的操作*/</span></span><br><span class="line">    <span class="keyword">switch</span> (key) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;w&#x27;</span> :</span><br><span class="line">            <span class="keyword">if</span> (pre_key != <span class="string">&#x27;s&#x27;</span>)	<span class="comment">/*向下走时，不能向上走*/</span></span><br><span class="line">                snake.position[<span class="number">0</span>].y -= <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                snake.position[<span class="number">0</span>].y += <span class="number">1</span>;</span><br><span class="line">                key = <span class="string">&#x27;s&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;a&#x27;</span> :</span><br><span class="line">            <span class="keyword">if</span> (pre_key != <span class="string">&#x27;d&#x27;</span>)<span class="comment">/*向右走时，不能向左走*/</span></span><br><span class="line">                snake.position[<span class="number">0</span>].x -= <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                snake.position[<span class="number">0</span>].x += <span class="number">2</span>;</span><br><span class="line">                key = <span class="string">&#x27;d&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;s&#x27;</span> :</span><br><span class="line">            <span class="keyword">if</span> (pre_key != <span class="string">&#x27;w&#x27;</span>)<span class="comment">/*向上走时，不能向下走*/</span></span><br><span class="line">                snake.position[<span class="number">0</span>].y += <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                snake.position[<span class="number">0</span>].y -= <span class="number">1</span>;</span><br><span class="line">                key = <span class="string">&#x27;w&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;d&#x27;</span> :</span><br><span class="line">            <span class="keyword">if</span> (pre_key != <span class="string">&#x27;a&#x27;</span>)<span class="comment">/*向左走时，不能向右走*/</span></span><br><span class="line">                snake.position[<span class="number">0</span>].x += <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                snake.position[<span class="number">0</span>].x -= <span class="number">2</span>;</span><br><span class="line">                key = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">default</span>:<span class="comment">/*当输入错误的按键时，进行容错处理，即不影响程序的正常运行*/</span></span><br><span class="line">            <span class="keyword">switch</span> (pre_key) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;w&#x27;</span> :</span><br><span class="line">                    snake.position[<span class="number">0</span>].y -= <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;a&#x27;</span> :</span><br><span class="line">                    snake.position[<span class="number">0</span>].x -= <span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;s&#x27;</span> :</span><br><span class="line">                    snake.position[<span class="number">0</span>].y += <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;d&#x27;</span> :</span><br><span class="line">                    snake.position[<span class="number">0</span>].x += <span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            key = pre_key;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    getPosition(snake.position[<span class="number">0</span>].x, snake.position[<span class="number">0</span>].y);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;■&quot;</span>);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*判断是否撞墙和吃自己，如果是，返回 1 */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">collision</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;snake.length;i++)</span><br><span class="line">		<span class="keyword">if</span>(snake.position[<span class="number">0</span>].x==snake.position[i].x&amp;&amp;snake.position[<span class="number">0</span>].y==snake.position[i].y)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			</span><br><span class="line">	<span class="keyword">if</span>(snake.position[<span class="number">0</span>].x==<span class="number">0</span>||snake.position[<span class="number">0</span>].x==width||snake.position[<span class="number">0</span>].y==<span class="number">0</span>||snake.position[<span class="number">0</span>].y==height)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    printMap();</span><br><span class="line">    hideHandle();</span><br><span class="line">    initSnake();</span><br><span class="line">    creatFood();</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    	</span><br><span class="line">    	</span><br><span class="line">    	<span class="keyword">if</span>(collision())&#123;</span><br><span class="line">    		getPosition(<span class="number">45</span>,<span class="number">12</span>);</span><br><span class="line">    		<span class="built_in">printf</span>(<span class="string">&quot;游戏结束,&quot;</span>);</span><br><span class="line">    		system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    		<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">    	</span><br><span class="line">    		keyDown();</span><br><span class="line">    	</span><br><span class="line">    	<span class="keyword">if</span>(eatFood())&#123;</span><br><span class="line">    		</span><br><span class="line">    		snake.length++;</span><br><span class="line">    		creatFood();</span><br><span class="line">    	</span><br><span class="line">		&#125;</span><br><span class="line">    </span><br><span class="line">    	</span><br><span class="line">    	</span><br><span class="line">    	Sleep(<span class="number">500</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<blockquote>
+<p>推荐使用第一种实现方法</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/%E8%B4%AA%E5%90%83%E8%9B%87/" data-id="cl0dbs9g80019dgtq692i0bo1" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E4%BE%8B%E9%A2%98/%E7%BB%93%E6%9E%84%E4%BD%93%E4%BE%8B%E9%A2%98/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E7%BB%93%E6%9E%84%E4%BD%93%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BF%E9%97%AE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%8F%98%E9%95%BF%E6%95%B0%E7%BB%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/typedef%E4%B8%8Edefine/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

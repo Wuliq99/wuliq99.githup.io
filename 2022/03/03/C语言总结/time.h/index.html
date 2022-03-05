@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="简介time.h 头文件定义了四个变量类型、两个宏和各种操作日期和时间的函数。 库变量下面是头文件 time.h 中定义的变量类型：    序号 变量 &amp; 描述    1 size_t 是无符号整数类型，它是 sizeof 关键字的结果。   2 clock_t 这是一个适合存储处理器时间的类型。   3 time_t is 这是一个适合存储日历时间类型。   4 struct tm 这是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/time.h/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="简介time.h 头文件定义了四个变量类型、两个宏和各种操作日期和时间的函数。 库变量下面是头文件 time.h 中定义的变量类型：    序号 变量 &amp; 描述    1 size_t 是无符号整数类型，它是 sizeof 关键字的结果。   2 clock_t 这是一个适合存储处理器时间的类型。   3 time_t is 这是一个适合存储日历时间类型。   4 struct tm 这是">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-03T12:17:20.038Z">
+<meta property="article:modified_time" content="2022-02-20T05:13:16.715Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-C语言总结/time.h" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/time.h/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.038Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>time.h</strong> 头文件定义了四个变量类型、两个宏和各种操作日期和时间的函数。</p>
+<h2 id="库变量"><a href="#库变量" class="headerlink" title="库变量"></a>库变量</h2><p>下面是头文件 time.h 中定义的变量类型：</p>
+<table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">变量 &amp; 描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left"><strong>size_t</strong> 是无符号整数类型，它是 <strong>sizeof</strong> 关键字的结果。</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left"><strong>clock_t</strong> 这是一个适合存储处理器时间的类型。</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left"><strong>time_t is</strong> 这是一个适合存储日历时间类型。</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left"><strong>struct tm</strong> 这是一个用来保存时间和日期的结构。</td>
+</tr>
+</tbody></table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span> &#123;</span></span><br><span class="line">   <span class="type">int</span> tm_sec;         <span class="comment">/* 秒，范围从 0 到 59        */</span></span><br><span class="line">   <span class="type">int</span> tm_min;         <span class="comment">/* 分，范围从 0 到 59        */</span></span><br><span class="line">   <span class="type">int</span> tm_hour;        <span class="comment">/* 小时，范围从 0 到 23        */</span></span><br><span class="line">   <span class="type">int</span> tm_mday;        <span class="comment">/* 一月中的第几天，范围从 1 到 31    */</span></span><br><span class="line">   <span class="type">int</span> tm_mon;         <span class="comment">/* 月，范围从 0 到 11        */</span></span><br><span class="line">   <span class="type">int</span> tm_year;        <span class="comment">/* 自 1900 年起的年数        */</span></span><br><span class="line">   <span class="type">int</span> tm_wday;        <span class="comment">/* 一周中的第几天，范围从 0 到 6    */</span></span><br><span class="line">   <span class="type">int</span> tm_yday;        <span class="comment">/* 一年中的第几天，范围从 0 到 365    */</span></span><br><span class="line">   <span class="type">int</span> tm_isdst;       <span class="comment">/* 夏令时                */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="库宏"><a href="#库宏" class="headerlink" title="库宏"></a>库宏</h2><p>下面是头文件 time.h 中定义的宏：</p>
+<table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">宏 &amp; 描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left"><strong>NULL</strong> 这个宏是一个空指针常量的值。</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left"><strong>CLOCKS_PER_SEC</strong> 这个宏表示每秒的处理器时钟个数。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>char *asctime(const struct tm *timeptr)</td>
+<td>返回一个指向字符串的指针，它代表了结构 <strong>struct timeptr</strong> 的日期和时间。</td>
+</tr>
+<tr>
+<td>clock_t clock(void)</td>
+<td>返回处理器时钟的时间</td>
+</tr>
+<tr>
+<td>char *ctime(const time_t *timer)</td>
+<td>返回一个表示当地时间的字符串，当地时间是基于参数 <strong>timer</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">tm</span> <span class="title">t</span>;</span></span><br><span class="line"></span><br><span class="line">   t.tm_sec    = <span class="number">10</span>;</span><br><span class="line">   t.tm_min    = <span class="number">10</span>;</span><br><span class="line">   t.tm_hour   = <span class="number">6</span>;</span><br><span class="line">   t.tm_mday   = <span class="number">25</span>;</span><br><span class="line">   t.tm_mon    = <span class="number">2</span>;</span><br><span class="line">   t.tm_year   = <span class="number">89</span>;</span><br><span class="line">   t.tm_wday   = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">   <span class="built_in">puts</span>(asctime(&amp;t));</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="type">clock_t</span> <span class="type">start_t</span>, <span class="type">end_t</span>;</span><br><span class="line">   <span class="type">double</span> <span class="type">total_t</span>;</span><br><span class="line">   <span class="type">int</span> i;</span><br><span class="line"> </span><br><span class="line">   <span class="type">start_t</span> = clock();</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;程序启动，start_t = %ld\n&quot;</span>, <span class="type">start_t</span>);</span><br><span class="line">    </span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;开始一个大循环，start_t = %ld\n&quot;</span>, <span class="type">start_t</span>);</span><br><span class="line">   <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt; <span class="number">10000000</span>; i++)</span><br><span class="line">   &#123;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="type">end_t</span> = clock();</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;大循环结束，end_t = %ld\n&quot;</span>, <span class="type">end_t</span>);</span><br><span class="line">   </span><br><span class="line">   <span class="type">total_t</span> = (<span class="type">double</span>)(<span class="type">end_t</span> - <span class="type">start_t</span>) / CLOCKS_PER_SEC;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;CPU 占用的总时间：%f\n&quot;</span>, <span class="type">total_t</span>  );</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;程序退出...\n&quot;</span>);</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/time.h/" data-id="cl0dbs9fo000adgtq3t8abg3r" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/qsort()/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/unsign%20int%20%E4%B8%8E%20int/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E4%BE%8B%E9%A2%98/%E7%BB%93%E6%9E%84%E4%BD%93%E4%BE%8B%E9%A2%98/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E7%BB%93%E6%9E%84%E4%BD%93%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BF%E9%97%AE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%8F%98%E9%95%BF%E6%95%B0%E7%BB%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/typedef%E4%B8%8Edefine/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

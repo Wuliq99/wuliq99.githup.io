@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-C语言总结/C 预处理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%20%E9%A2%84%E5%A4%84%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.006Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="C-预处理–菜鸟教程笔记"><a href="#C-预处理–菜鸟教程笔记" class="headerlink" title="C 预处理–菜鸟教程笔记"></a>C 预处理–菜鸟教程笔记</h1><blockquote>
+<p><strong>C 预处理器</strong>不是编译器的组成部分，但是它是编译过程中一个单独的步骤。简言之，C 预处理器只不过是一个文本替换工具而已，它们会指示编译器在实际编译之前完成所需的预处理。我们将把 C 预处理器（C Preprocessor）简写为 CPP。</p>
+</blockquote>
+<p>所有的预处理器命令都是以井号（#）开头。它必须是第一个非空字符，为了增强可读性，预处理器指令应从第一列开始。下面列出了所有重要的预处理器指令：</p>
+<table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">#define</td>
+<td align="left">定义宏</td>
+</tr>
+<tr>
+<td align="left">#include</td>
+<td align="left">包含一个源代码文件</td>
+</tr>
+<tr>
+<td align="left">#undef</td>
+<td align="left">取消已定义的宏</td>
+</tr>
+<tr>
+<td align="left">#ifdef</td>
+<td align="left">如果宏已经定义，则返回真</td>
+</tr>
+<tr>
+<td align="left">#ifndef</td>
+<td align="left">如果宏没有定义，则返回真</td>
+</tr>
+<tr>
+<td align="left">#if</td>
+<td align="left">如果给定条件为真，则编译下面代码</td>
+</tr>
+<tr>
+<td align="left">#else</td>
+<td align="left">#if 的替代方案</td>
+</tr>
+<tr>
+<td align="left">#elif</td>
+<td align="left">如果前面的 #if 给定条件不为真，当前条件为真，则编译下面代码</td>
+</tr>
+<tr>
+<td align="left">#endif</td>
+<td align="left">结束一个 #if……#else 条件编译块</td>
+</tr>
+<tr>
+<td align="left">#error</td>
+<td align="left">当遇到标准错误时，输出错误消息</td>
+</tr>
+<tr>
+<td align="left">#pragma</td>
+<td align="left">使用标准化方法，向编译器发布特殊的命令到编译器中</td>
+</tr>
+</tbody></table>
+<h2 id="预处理器实例"><a href="#预处理器实例" class="headerlink" title="预处理器实例"></a>预处理器实例</h2><p>分析下面的实例来理解不同的指令。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_ARRAY_LENGTH 20</span></span><br></pre></td></tr></table></figure>
+
+<p>这个指令告诉 CPP 把所有的 MAX_ARRAY_LENGTH 替换为 20。使用 <em>#define</em> 定义常量来增强可读性。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;myheader.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这些指令告诉 CPP 从<strong>系统库</strong>中获取 stdio.h，并添加文本到当前的源文件中。下一行告诉 CPP 从本地目录中获取 <strong>myheader.h</strong>，并添加内容到当前的源文件中。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">undef</span>  FILE_SIZE</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FILE_SIZE 42</span></span><br></pre></td></tr></table></figure>
+
+<p>这个指令告诉 CPP 取消已定义的 FILE_SIZE，并定义它为 42。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> MESSAGE</span></span><br><span class="line">   <span class="meta">#<span class="keyword">define</span> MESSAGE <span class="string">&quot;You wish!&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这个指令告诉 CPP 只有当 MESSAGE 未定义时，才定义 MESSAGE。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> DEBUG</span></span><br><span class="line">   <span class="comment">/* Your debugging statements here */</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这个指令告诉 CPP 如果定义了 DEBUG，则执行处理语句。在编译时，如果向 gcc 编译器传递了 <em>-DDEBUG</em> 开关量，这个指令就非常有用。它定义了 DEBUG，可以在编译期间随时开启或关闭调试。</p>
+<h2 id="预定义宏"><a href="#预定义宏" class="headerlink" title="预定义宏"></a>预定义宏</h2><p>ANSI C 定义了许多宏。在编程中可以使用这些宏，但是<strong>不能直接修改这些预定义的宏</strong>。</p>
+<table>
+<thead>
+<tr>
+<th align="left">宏</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">_<em>DATE</em>_</td>
+<td align="left">当前日期，一个以 “MMM DD YYYY” 格式表示的字符常量。</td>
+</tr>
+<tr>
+<td align="left">_<em>TIME</em>_</td>
+<td align="left">当前时间，一个以 “HH:MM:SS” 格式表示的字符常量。</td>
+</tr>
+<tr>
+<td align="left">_<em>FILE</em>_</td>
+<td align="left">这会包含当前文件名，一个字符串常量。</td>
+</tr>
+<tr>
+<td align="left">_<em>LINE</em>_</td>
+<td align="left">这会包含当前行号，一个十进制常量。</td>
+</tr>
+<tr>
+<td align="left">_<em>STDC</em>_</td>
+<td align="left">当编译器以 ANSI 标准编译时，则定义为 1。</td>
+</tr>
+</tbody></table>
+<p>让我们来尝试下面的实例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;File :%s\n&quot;</span>, __FILE__ );</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;Date :%s\n&quot;</span>, __DATE__ );</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;Time :%s\n&quot;</span>, __TIME__ );</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;Line :%d\n&quot;</span>, __LINE__ );</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;ANSI :%d\n&quot;</span>, __STDC__ );</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当上面的代码（在文件 <strong>test.c</strong> 中）被编译和执行时，它会产生下列结果：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">File :test.c</span><br><span class="line">Date :Jun <span class="number">2</span> <span class="number">2012</span></span><br><span class="line">Time :<span class="number">03</span>:<span class="number">36</span>:<span class="number">24</span></span><br><span class="line">Line :<span class="number">8</span></span><br><span class="line">ANSI :<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="预处理器运算符"><a href="#预处理器运算符" class="headerlink" title="预处理器运算符"></a>预处理器运算符</h2><p>C 预处理器提供了下列的运算符来帮助创建宏：</p>
+<h5 id="宏延续运算符（-）"><a href="#宏延续运算符（-）" class="headerlink" title="宏延续运算符（\）"></a>宏延续运算符（\）</h5><p>一个宏通常写在一个单行上。但是如果宏太长，一个单行容纳不下，则使用宏延续运算符（\）。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span>  message_for(a, b)  \</span></span><br><span class="line"><span class="meta">    printf(#a <span class="string">&quot; and &quot;</span> #b <span class="string">&quot;: We love you!\n&quot;</span>)</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="字符串常量化运算符（-）"><a href="#字符串常量化运算符（-）" class="headerlink" title="字符串常量化运算符（#）"></a>字符串常量化运算符（#）</h5><p>在宏定义中，当需要把一个宏的参数转换为字符串常量时，则使用字符串常量化运算符（#）。在宏中使用的该运算符有一个特定的参数或参数列表。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  message_for(a, b)  \</span></span><br><span class="line"><span class="meta">    printf(#a <span class="string">&quot; and &quot;</span> #b <span class="string">&quot;: We love you!\n&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">   message_for(Carole, Debra);</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Carole and Debra: We love you!</span><br></pre></td></tr></table></figure>
+
+<h5 id="标记粘贴运算符（-）"><a href="#标记粘贴运算符（-）" class="headerlink" title="标记粘贴运算符（##）"></a>标记粘贴运算符（##）</h5><p>宏定义内的标记粘贴运算符（##）会合并两个参数。它允许在宏定义中两个独立的标记被合并为一个标记，<strong>其实是一个标识符</strong>。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> tokenpaster(n) printf (<span class="string">&quot;token&quot;</span> #n <span class="string">&quot; = %d&quot;</span>, token##n)</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="type">int</span> token34 = <span class="number">40</span>;</span><br><span class="line">   </span><br><span class="line">   tokenpaster(<span class="number">34</span>);</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">token34 = <span class="number">40</span></span><br></pre></td></tr></table></figure>
+
+<p>这是怎么发生的，因为这个实例会从编译器产生下列的实际输出：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span> (<span class="string">&quot;token34 = %d&quot;</span>, token34);</span><br></pre></td></tr></table></figure>
+
+<p>这个实例演示了 token##n 会连接到 token34 中，在这里，我们使用了<strong>字符串常量化运算符（#）</strong>和<strong>标记粘贴运算符（##）</strong>。</p>
+<h5 id="defined-运算符"><a href="#defined-运算符" class="headerlink" title="defined() 运算符"></a>defined() 运算符</h5><p>预处理器 <strong>defined</strong> 运算符是用在常量表达式中的，用来确定一个标识符是否已经使用 #define 定义过。如果指定的标识符已定义，则值为真（非零）。如果指定的标识符未定义，则值为假（零）。下面的实例演示了 defined() 运算符的用法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> !defined (MESSAGE)</span></span><br><span class="line">   <span class="meta">#<span class="keyword">define</span> MESSAGE <span class="string">&quot;You wish!&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;Here is the message: %s\n&quot;</span>, MESSAGE);  </span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Here is the message: You wish!</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数化的宏"><a href="#参数化的宏" class="headerlink" title="参数化的宏"></a>参数化的宏</h2><p>CPP 一个强大的功能是可以使用参数化的宏来模拟函数。例如，下面的代码是计算一个数的平方：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">square</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">   <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以使用宏重写上面的代码，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> square(x) ((x) * (x))</span></span><br></pre></td></tr></table></figure>
+
+<p>在使用带有参数的宏之前，必须使用 <strong>#define</strong> 指令定义。参数列表是括在圆括号内，且必须紧跟在宏名称的后边。宏名称和左圆括号之间不允许有空格。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX(x,y) ((x) &gt; (y) ? (x) : (y))</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;Max between 20 and 10 is %d\n&quot;</span>, MAX(<span class="number">10</span>, <span class="number">20</span>));  </span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当上面的代码被编译和执行时，它会产生下列结果：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Max between <span class="number">20</span> and <span class="number">10</span> is <span class="number">20</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%20%E9%A2%84%E5%A4%84%E7%90%86/" data-id="cl0dbs9fi0002dgtq9qpq6iay" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C语言总结/bug纠错--数组越界访问" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/bug%E7%BA%A0%E9%94%99--%E6%95%B0%E7%BB%84%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AE/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.006Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">3</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">for</span>(;i&lt;=<span class="number">3</span>;i++)&#123;</span><br><span class="line">		a[i]=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;hello world\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>错因</strong></p>
+<p>对 <strong>数组 a</strong> 进行了越界访问，而访问的地址正是 <strong>变量 i</strong> 在内存中的地址，在第四次循环时又将 <strong>变量i</strong> 的值置为 0 ,因此程序会陷入无限循环</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/bug%E7%BA%A0%E9%94%99--%E6%95%B0%E7%BB%84%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AE/" data-id="cl0dbs9fj0003dgtqclxy73yu" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C语言总结/a[2]与2[a]的区别" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/a%5B2%5D%E4%B8%8E2%5Ba%5D%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.006Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>假设声明了一个数组</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">8</span>];</span><br></pre></td></tr></table></figure>
+
+<p>以下两种访问是等效的，即</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>[a]</span><br><span class="line"></span><br><span class="line">a[<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+
+<p>原因</p>
+<p>这和编译器访问数组时的计算方式有关，假设访问 a[2] ，编译器的计算方式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*(a+<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>而在访问 2[a] 时，计算方式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*(<span class="number">2</span>+(a))</span><br></pre></td></tr></table></figure>
+
+<p>化简后相当于</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*(<span class="number">2</span>+a)</span><br></pre></td></tr></table></figure>
+
+<p>总结</p>
+<blockquote>
+<p>a[2] 与 2[a] 之所以相同，是因为C实现下标的方法。虽然对编译器来说，这两种方式并无差别。但是我们应该避免2[a]这种写法，因为它会大大影响程序的可读性</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/a[2]%E4%B8%8E2[a]%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cl0dbs9fk0004dgtqaq7o34cg" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:13:03.889Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/03/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/hello-world/" data-id="cl0dbs9f10000dgtq3o4wdwip" data-title="Hello World" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E4%BE%8B%E9%A2%98/%E7%BB%93%E6%9E%84%E4%BD%93%E4%BE%8B%E9%A2%98/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E7%BB%93%E6%9E%84%E4%BD%93%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BF%E9%97%AE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%8F%98%E9%95%BF%E6%95%B0%E7%BB%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/typedef%E4%B8%8Edefine/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

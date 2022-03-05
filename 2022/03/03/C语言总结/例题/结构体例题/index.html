@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="一. 真题介绍        1.[2015-9 完美] 在IA32架构下，下面的union结构的sizeof大小为：_______ 123456789union PageLayout&amp;#123;	struct	&amp;#123;		int page_index;		char key[5];	&amp;#125;;	char dummy[10];&amp;#125;;  ​        题解：​        该题充">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E4%BE%8B%E9%A2%98/%E7%BB%93%E6%9E%84%E4%BD%93%E4%BE%8B%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一. 真题介绍        1.[2015-9 完美] 在IA32架构下，下面的union结构的sizeof大小为：_______ 123456789union PageLayout&amp;#123;	struct	&amp;#123;		int page_index;		char key[5];	&amp;#125;;	char dummy[10];&amp;#125;;  ​        题解：​        该题充">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-03T12:17:20.272Z">
+<meta property="article:modified_time" content="2022-02-20T05:13:35.472Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-C语言总结/例题/结构体例题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E4%BE%8B%E9%A2%98/%E7%BB%93%E6%9E%84%E4%BD%93%E4%BE%8B%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.272Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>一. 真题介绍<br>        1.[2015-9 完美] 在IA32架构下，下面的union结构的sizeof大小为：_______</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">union PageLayout</span><br><span class="line">&#123;</span><br><span class="line">	struct</span><br><span class="line">	&#123;</span><br><span class="line">		int page_index;</span><br><span class="line">		char key[5];</span><br><span class="line">	&#125;;</span><br><span class="line">	char dummy[10];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>​        题解：<br>​        该题充分考察了结构struct和union联合的区别：<br>​        联合与结构的本质区别在于内存使用方式的不同。<br>​        结构中不同的成员使用不同的存储空间，一个结构所占的内存大小是结构中每个成员所占内存大小的总和，结构体中每个成员相互独立，是不能占用同一存储单元的。<br>​        联合大小取决于其中最大的数据类型内存分配大小，联合中内存是叠加存放的。<br>​        同一存储区域由不同类型的变量共享，这种数据类型就是联合(也称共同体)。<br>​        故：联合PageLayout中由struct和dummy[10]两部分组成，其中结构的大小为int型4字节+char8字节，因为它需要字节对齐为4的整数倍，结构12字节+dummy字符数组10字节。<br>​        答案：12</p>
+<p>​        </p>
+<pre><code>    2.[2013 完美世界] 求结构st的大小为_______.
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">struct st</span><br><span class="line">&#123;</span><br><span class="line">	char ch,*ptr;</span><br><span class="line">	union</span><br><span class="line">	&#123;</span><br><span class="line">		short a,b;</span><br><span class="line">		unsigned int c:2,d:1;</span><br><span class="line">	&#125;;</span><br><span class="line">	bool f;</span><br><span class="line">	struct st *next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>    题解：
+    该提醒主要考察结构体中嵌套联合的大小，原理同上。其中int型为4字节，short为2字节，指针相当于无符号的整形4字节，同时补齐则为实际大小。
+   char ch内存对齐后为4字节、char类型指针4字节、union为4字节（其中联合为最大数据类型的内存大小，short a 2字节、short b 2字节、无符号Int4字节，位域问题见下）、bool型补齐4字节、struct类型指针4字节，总共占：4+4+4+4+4=20字节。
+    答案：20
+    位域：把一个字节中的二进制位划分为几个不同的区域，并说明每个区域的位数。
+    格式：类型说明符 位域名：位域长度，例如 unsigned int c:2表示c在内存中占2位
+    通过如下程序输出结构中内存地址如下图所示：
+
+
+
+
+
+
+    3.[变形 完美] 求结构st的大小为_______.
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">struct st</span><br><span class="line">&#123;</span><br><span class="line">	char ch,*ptr;</span><br><span class="line">	union A</span><br><span class="line">	&#123;</span><br><span class="line">		short a,b;</span><br><span class="line">		unsigned int c:2,d:1;</span><br><span class="line">	&#125;;</span><br><span class="line">	bool f;</span><br><span class="line">	struct st *next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<p>​        题解：<br>​        它与上题的区别联合声明A，表示定义的一个类型不用占用内存；而如果没有声明A，则表示声明了结构体中的一个成员，需要占内存。<br>​        内存大小为ch补齐4字节、char指针4字节、联合不占内存0字节、bool型补齐4字节、结构指针4字节，输出16字节。注意：如果联合后面添加ui，如 “union A{….}ui;” 此时输出结果为20。<br>​        答案：16</p>
+<p>二. 其他题型<br>        代码分别如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct A</span><br><span class="line">&#123;</span><br><span class="line">	int page_index;</span><br><span class="line">	char key[5];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>​        输出：12<br>​        其中int4字节+char两个4字节补齐</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct B</span><br><span class="line">&#123;</span><br><span class="line">	char a;</span><br><span class="line">	int b;</span><br><span class="line">	double c;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>​        输出16<br>​        其中补齐4字节+int型4字节+double8字节，其中为什么补齐4而不是8呢？思考下~</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct C</span><br><span class="line">&#123;</span><br><span class="line">	char a;</span><br><span class="line">	double c;</span><br><span class="line">	char b;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>​        输出：24<br>​        输出补齐a8字节+double8字节+c补齐8字节</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">union </span><br><span class="line">&#123;</span><br><span class="line">	long i;</span><br><span class="line">	int k;</span><br><span class="line">	char c;</span><br><span class="line">	char s[4];</span><br><span class="line">&#125;D;</span><br></pre></td></tr></table></figure>
+
+<p>​        输出：4<br>​        联合4字节，其中由于联合各个成员使用共同的存储区域，当向其中一个成员赋值时，联合中的其他值也会发生变化。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E4%BE%8B%E9%A2%98/%E7%BB%93%E6%9E%84%E4%BD%93%E4%BE%8B%E9%A2%98/" data-id="cl0dbs9gc001hdgtq14843imi" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E7%BB%93%E6%9E%84%E4%BD%93%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BF%E9%97%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E4%BE%8B%E9%A2%98/%E7%BB%93%E6%9E%84%E4%BD%93%E4%BE%8B%E9%A2%98/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E7%BB%93%E6%9E%84%E4%BD%93%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BF%E9%97%AE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%8F%98%E9%95%BF%E6%95%B0%E7%BB%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/typedef%E4%B8%8Edefine/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

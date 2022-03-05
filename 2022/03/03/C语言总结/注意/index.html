@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="移位符右边的数一定要是整数，下列例子会编译错误 12345#include &lt;stdio.h&gt;int main() &amp;#123;    printf(&quot;%d\n&quot;, 1&lt;&lt;1.6);    return 0;&amp;#125;  C语言里函数的参数默认是从右往左处理的，输出时是从左往右。  #include&lt;stdio.h&gt; int main(v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E6%B3%A8%E6%84%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="移位符右边的数一定要是整数，下列例子会编译错误 12345#include &lt;stdio.h&gt;int main() &amp;#123;    printf(&quot;%d\n&quot;, 1&lt;&lt;1.6);    return 0;&amp;#125;  C语言里函数的参数默认是从右往左处理的，输出时是从左往右。  #include&lt;stdio.h&gt; int main(v">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-03T12:17:20.069Z">
+<meta property="article:modified_time" content="2022-02-20T05:13:12.235Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-C语言总结/注意" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E6%B3%A8%E6%84%8F/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.069Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>移位符右边的数一定要是整数，下列例子会编译错误</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="number">1</span>&lt;&lt;<span class="number">1.6</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>C语言里函数的参数默认是从右往左处理的，输出时是从左往右。</p>
+<ul>
+<li><pre><code class="c">#include&lt;stdio.h&gt;
+int main(void)
+&#123;
+int a = 10, b = 20, c = 30;
+ printf(&quot;\n %d..%d..%d \n&quot;, a+b+c, (b =b*2),(c = c*2));
+ return 0;
+ &#125;
+</code></pre>
+<blockquote>
+<p>结果：110..40..60</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>C语言中，非0为真，零为假</p>
+</li>
+<li><p>在Dev C++ 中，指针的大小都为 8 个字节</p>
+</li>
+<li><p>sizeof ()内部的表达式不参与真实运算！这点很重要！其运算值在编译时就计算好了</p>
+</li>
+<li><p>关于void*型指针：</p>
+<blockquote>
+<p> <strong>void*：无具体类型的指针  能够接收任意类型的地址<br> 缺点：不能进行运算。不能+-整数，不能解引用</strong></p>
+</blockquote>
+</li>
+<li><p>sizeof()与strlen()</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>共同点：返回类型都是size_t</strong></p>
+<p><strong>不同点：sizeof()是操作符计算的是变量&#x2F;类型所占空间的大小，单位是字节，\0也算进空间</strong></p>
+<p>​       <strong>strlen()是库函数，计算的是字符串长度，不计算\0</strong></p>
+</blockquote>
+<ul>
+<li>在两种方法都正确时，下标绝不会比指针更有效率，但指针有时会比下标更有效率。前提是指针被正确使用</li>
+<li>下标引用的优先级高于间接访问</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E6%B3%A8%E6%84%8F/" data-id="cl0dbs9fu000ldgtq1htjhmm5" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E9%A2%84%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E5%AF%BB%E5%9D%80%E5%85%AC%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E4%BE%8B%E9%A2%98/%E7%BB%93%E6%9E%84%E4%BD%93%E4%BE%8B%E9%A2%98/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E7%BB%93%E6%9E%84%E4%BD%93%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BF%E9%97%AE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%8F%98%E9%95%BF%E6%95%B0%E7%BB%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/typedef%E4%B8%8Edefine/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="6174数学黑洞取任何一个4位数（4个数字均为同一个数字的例外），将组成该数的4个数字重新组合成可能的最大数和可能的最小数，再将两者的差求出来；对此差值重复同样的过程（例如：开始时取数8028，最大的重新组合数为8820，最小的为0288，二者的差8532。重复上述过程得出8532－2358&#x3D;6174），最后总是达到卡普雷卡尔黑洞：6174。称之“黑洞”是指再继续运算，都重复这个数，“逃">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/6174%E6%95%B0%E5%AD%A6%E9%BB%91%E6%B4%9E/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="6174数学黑洞取任何一个4位数（4个数字均为同一个数字的例外），将组成该数的4个数字重新组合成可能的最大数和可能的最小数，再将两者的差求出来；对此差值重复同样的过程（例如：开始时取数8028，最大的重新组合数为8820，最小的为0288，二者的差8532。重复上述过程得出8532－2358&#x3D;6174），最后总是达到卡普雷卡尔黑洞：6174。称之“黑洞”是指再继续运算，都重复这个数，“逃">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-03T12:17:20.085Z">
+<meta property="article:modified_time" content="2022-02-20T05:13:34.870Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-C语言总结/C程序/6174数学黑洞" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/6174%E6%95%B0%E5%AD%A6%E9%BB%91%E6%B4%9E/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.085Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><em><strong>6174数学黑洞<br>取任何一个4位数（4个数字均为同一个数字的例外），将组成该数的4个数字重新组合成可能的最大数和<br>可能的最小数，再将两者的差求出来；对此差值重复同样的过程（例如：开始时取数8028，最大的重新组<br>合数为8820，最小的为0288，二者的差8532。重复上述过程得出8532－2358&#x3D;6174），最后总是达到卡普<br>雷卡尔黑洞：6174。称之“黑洞”是指再继续运算，都重复这个数，“逃”不出去。把以上计算过程称<br>为卡普雷卡尔运算，这个现象称归敛，其结果6174称归敛结果。</strong></em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sort_up</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> x;</span><br><span class="line">	<span class="type">int</span> temp;</span><br><span class="line">	<span class="type">int</span> flag=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;		<span class="comment">//升序排列 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>-i;j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])&#123;</span><br><span class="line">			temp=a[j];</span><br><span class="line">			a[j]=a[j+<span class="number">1</span>];</span><br><span class="line">			a[j+<span class="number">1</span>]=temp;</span><br><span class="line">		</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	x=a[<span class="number">0</span>]*<span class="number">1000</span>+a[<span class="number">1</span>]*<span class="number">100</span>+a[<span class="number">2</span>]*<span class="number">10</span>+a[<span class="number">3</span>];</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">split</span><span class="params">(<span class="type">int</span> s)</span>&#123;</span><br><span class="line">	a[<span class="number">0</span>] = s/<span class="number">1000</span>;  <span class="comment">//把这个数放入数组</span></span><br><span class="line">    a[<span class="number">1</span>] = s%<span class="number">1000</span>/<span class="number">100</span>;</span><br><span class="line">    a[<span class="number">2</span>] = s%<span class="number">100</span>/<span class="number">10</span>;</span><br><span class="line">    a[<span class="number">3</span>] = s%<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sort_down</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> x;</span><br><span class="line">	<span class="type">int</span> temp;</span><br><span class="line">	<span class="type">int</span> flag=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>-i;j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[j]&lt;a[j+<span class="number">1</span>])&#123;			<span class="comment">//降序排列 </span></span><br><span class="line">			temp=a[j];</span><br><span class="line">			a[j]=a[j+<span class="number">1</span>];</span><br><span class="line">			a[j+<span class="number">1</span>]=temp;</span><br><span class="line">		</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	x=a[<span class="number">0</span>]*<span class="number">1000</span>+a[<span class="number">1</span>]*<span class="number">100</span>+a[<span class="number">2</span>]*<span class="number">10</span>+a[<span class="number">3</span>];</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> temp,a1,a2,ans;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;请输入数字：&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;ans);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">	split(ans);</span><br><span class="line">	a2=sort_up();</span><br><span class="line">	a1=sort_down();</span><br><span class="line">	ans=a1-a2;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>,a1,a2);</span><br><span class="line">	<span class="keyword">if</span>(<span class="number">6174</span>==ans)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;don&#x27;t escape&quot;</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;escape successfully&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">6174数学黑洞 </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">取任何一个4位数（4个数字均为同一个数字的例外），将组成该数的4个数字重新组合成可能的最大数和</span></span><br><span class="line"><span class="comment">可能的最小数，再将两者的差求出来；对此差值重复同样的过程（例如：开始时取数8028，最大的重新组</span></span><br><span class="line"><span class="comment">合数为8820，最小的为0288，二者的差8532。重复上述过程得出8532－2358=6174），最后总是达到卡普</span></span><br><span class="line"><span class="comment">雷卡尔黑洞：6174。称之“黑洞”是指再继续运算，都重复这个数，“逃”不出去。把以上计算过程称</span></span><br><span class="line"><span class="comment">为卡普雷卡尔运算，这个现象称归敛，其结果6174称归敛结果。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/6174%E6%95%B0%E5%AD%A6%E9%BB%91%E6%B4%9E/" data-id="cl0dbs9fs000hdgtqgaisginx" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E7%A8%8B%E5%BA%8F/%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E4%BE%8B%E9%A2%98/%E7%BB%93%E6%9E%84%E4%BD%93%E4%BE%8B%E9%A2%98/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E7%BB%93%E6%9E%84%E4%BD%93%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BF%E9%97%AE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%8F%98%E9%95%BF%E6%95%B0%E7%BB%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/typedef%E4%B8%8Edefine/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

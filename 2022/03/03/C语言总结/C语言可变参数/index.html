@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="C语言可变参数–借助stdarg.h简介stdarg.h 头文件定义了一个变量类型 va_list 和三个宏，这三个宏可用于在参数个数未知（即参数个数可变）时获取函数中的参数。 可变参数的函数通在参数列表的末尾是使用省略号(,…)定义的。 使用模板1234567891011121314int val&#x3D;0;int i&#x3D;0;   va_list ap; &#x2F;*定义一个va_list*&#x2F;   va_sta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E8%AF%AD%E8%A8%80%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C语言可变参数–借助stdarg.h简介stdarg.h 头文件定义了一个变量类型 va_list 和三个宏，这三个宏可用于在参数个数未知（即参数个数可变）时获取函数中的参数。 可变参数的函数通在参数列表的末尾是使用省略号(,…)定义的。 使用模板1234567891011121314int val&#x3D;0;int i&#x3D;0;   va_list ap; &#x2F;*定义一个va_list*&#x2F;   va_sta">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-03T12:17:20.022Z">
+<meta property="article:modified_time" content="2022-02-20T05:13:20.018Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-C语言总结/C语言可变参数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E8%AF%AD%E8%A8%80%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-03-03T12:17:20.022Z" itemprop="datePublished">2022-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="C语言可变参数–借助stdarg-h"><a href="#C语言可变参数–借助stdarg-h" class="headerlink" title="C语言可变参数–借助stdarg.h"></a>C语言可变参数–借助stdarg.h</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>stdarg.h</strong> 头文件定义了一个变量类型 <strong>va_list</strong> 和三个宏，这三个宏可用于在参数个数未知（即参数个数可变）时获取函数中的参数。</p>
+<p>可变参数的函数通在参数列表的末尾是使用省略号(,…)定义的。</p>
+<h2 id="使用模板"><a href="#使用模板" class="headerlink" title="使用模板"></a>使用模板</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">int</span> val=<span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">   va_list ap; <span class="comment">/*定义一个va_list*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   va_start(ap, num_args);<span class="comment">/*开始,num_args为要计算的参数的个数*/</span> </span><br><span class="line">   <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; num_args; i++)</span><br><span class="line">   &#123;</span><br><span class="line">       val += va_arg(ap, <span class="type">int</span>);<span class="comment">/*每次循环取一个*/</span> </span><br><span class="line">   &#125;</span><br><span class="line">   va_end(ap);<span class="comment">/*结束，可以省略，但最好不要省，省略后结果未定义*/</span> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="各部分介绍"><a href="#各部分介绍" class="headerlink" title="各部分介绍"></a>各部分介绍</h2><h3 id="va-start"><a href="#va-start" class="headerlink" title="va_start()"></a>va_start()</h3><h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><blockquote>
+<p>C 库宏 <strong>void va_start(va_list ap, last_arg)</strong> 初始化 <strong>ap</strong> 变量，它与 <strong>va_arg</strong> 和 <strong>va_end</strong> 宏是一起使用的。<strong>last_arg</strong> 是要计算的参数的个数</p>
+</blockquote>
+<p><strong>这个宏必须在使用 va_arg 和 va_end 之前被调用</strong></p>
+<h4 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void va_start(va_list ap, last_arg);</span><br></pre></td></tr></table></figure>
+
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><ul>
+<li><strong>ap</strong> – 这是一个 <strong>va_list</strong> 类型的对象，它用来存储通过 <strong>va_arg</strong> 获取额外参数时所必需的信息。</li>
+<li><strong>last_arg</strong> – 要计算的参数的个数。</li>
+</ul>
+<h4 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h4><p>NA</p>
+<h3 id="va-arg"><a href="#va-arg" class="headerlink" title="va_arg()"></a>va_arg()</h3><h4 id="描述-1"><a href="#描述-1" class="headerlink" title="描述"></a>描述</h4><blockquote>
+<p>C 库宏 <strong>type va_arg(va_list ap, type)</strong> 检索函数参数列表中类型为 <strong>type</strong> 的下一个参数。<strong>它无法判断检索到的参数是否是传给函数的最后一个参数</strong></p>
+</blockquote>
+<h4 id="声明-1"><a href="#声明-1" class="headerlink" title="声明"></a>声明</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type va_arg(va_list ap, type)</span><br></pre></td></tr></table></figure>
+
+<h4 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h4><ul>
+<li><strong>ap</strong> – 这是一个 <strong>va_list</strong> 类型的对象，存储了有关额外参数和检索状态的信息。该对象应在第一次调用 va_arg 之前通过调用 va_start 进行初始化。</li>
+<li><strong>type</strong> – 这是一个类型名称。表示要计算的参数的类型</li>
+</ul>
+<h4 id="返回值-1"><a href="#返回值-1" class="headerlink" title="返回值"></a>返回值</h4><p>该宏返回下一个额外的参数，是一个类型为 type 的表达式</p>
+<h3 id="va-end"><a href="#va-end" class="headerlink" title="va_end()"></a>va_end()</h3><h4 id="描述-2"><a href="#描述-2" class="headerlink" title="描述"></a>描述</h4><blockquote>
+<p>C 库宏 <strong>void va_end(va_list ap)</strong> 允许使用了 <strong>va_start</strong> 宏的带有可变参数的函数返回。如果在从函数返回之前没有调用 <strong>va_end</strong>，则结果为未定义。</p>
+</blockquote>
+<h4 id="声明-2"><a href="#声明-2" class="headerlink" title="声明"></a>声明</h4><p>下面是 va_end() 宏的声明。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void va_end(va_list ap)</span><br></pre></td></tr></table></figure>
+
+<h4 id="参数-2"><a href="#参数-2" class="headerlink" title="参数"></a>参数</h4><ul>
+<li><strong>ap</strong> – 这是之前由同一函数中的 va_start 初始化的 va_list 对象。</li>
+</ul>
+<p>返回值</p>
+<p>该宏不返回任何值。</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdarg.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sum</span><span class="params">(<span class="type">int</span>, ...)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;10、20 和 30 的和 = %d\n&quot;</span>,  sum(<span class="number">3</span>, <span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>) );</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;4、20、25 和 30 的和 = %d\n&quot;</span>,  sum(<span class="number">4</span>, <span class="number">4</span>, <span class="number">20</span>, <span class="number">25</span>, <span class="number">30</span>) );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sum</span><span class="params">(<span class="type">int</span> num_args, ...)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> val = <span class="number">0</span>;</span><br><span class="line">    va_list ap;<span class="comment">/*定义一个va_list,类似与数组*/</span> </span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line"></span><br><span class="line">    va_start(ap, num_args);<span class="comment">/*开始*/</span> </span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; num_args; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        val += va_arg(ap, <span class="type">int</span>);<span class="comment">/*每次循环取一个*/</span> </span><br><span class="line">    &#125;</span><br><span class="line">    va_end(ap);<span class="comment">/*结束*/</span> </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/C%E8%AF%AD%E8%A8%80%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" data-id="cl0dbs9fl0005dgtqchi7drmo" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/unsign%20int%20%E4%B8%8E%20int/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/main()%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/%E4%BE%8B%E9%A2%98/%E7%BB%93%E6%9E%84%E4%BD%93%E4%BE%8B%E9%A2%98/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E7%BB%93%E6%9E%84%E4%BD%93%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BF%E9%97%AE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/%E5%8F%98%E9%95%BF%E6%95%B0%E7%BB%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/03/C%E8%AF%AD%E8%A8%80%E6%80%BB%E7%BB%93/c%E8%AF%AD%E8%A8%80%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/typedef%E4%B8%8Edefine/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
